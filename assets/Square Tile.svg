@@ -1,0 +1,30 @@
+<svg width="49" height="49" viewBox="0 0 49 49" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<title>Square Tile</title>
+<desc>Created using Figma</desc>
+<g id="Canvas" transform="matrix(0.5 0 0 0.5 -356 8)">
+<g id="Square Tile">
+<g id="Rectangle 5" filter="url(#filter0_d)">
+<use xlink:href="#path0_fill" transform="translate(716 -16)" fill="#40C9A2"/>
+<mask id="mask0_outline_ins">
+<use xlink:href="#path0_fill" fill="white" transform="translate(716 -16)"/>
+</mask>
+<g mask="url(#mask0_outline_ins)">
+<use xlink:href="#path1_stroke_2x" transform="translate(716 -16)" fill="#F6F4D2"/>
+</g>
+</g>
+</g>
+</g>
+<defs>
+<filter id="filter0_d" filterUnits="userSpaceOnUse" x="712" y="-16" width="98" height="98" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 255 0"/>
+<feOffset dx="0" dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow" result="shape"/>
+</filter>
+<path id="path0_fill" d="M 0 0L 90 0L 90 90L 0 90L 0 0Z"/>
+<path id="path1_stroke_2x" d="M 0 0L 0 -3L -3 -3L -3 0L 0 0ZM 90 0L 93 0L 93 -3L 90 -3L 90 0ZM 90 90L 90 93L 93 93L 93 90L 90 90ZM 0 90L -3 90L -3 93L 0 93L 0 90ZM 0 3L 90 3L 90 -3L 0 -3L 0 3ZM 87 0L 87 90L 93 90L 93 0L 87 0ZM 90 87L 0 87L 0 93L 90 93L 90 87ZM 3 90L 3 0L -3 0L -3 90L 3 90Z"/>
+</defs>
+</svg>
