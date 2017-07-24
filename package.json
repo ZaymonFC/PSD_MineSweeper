@@ -1,11 +1,22 @@
 {
   "name": "minesweeper",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
-  "license": "ISC"
+  "author": "Zaymon Foulds-Cook",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZaymonFC/PSD_MineSweeper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ZaymonFC/PSD_MineSweeper/issues"
+  },
+  "homepage": "https://github.com/ZaymonFC/PSD_MineSweeper#readme",
+  "description": "",
+  "dependencies": {
+    "webpack": "^3.3.0"
+  }
 }

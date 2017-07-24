@@ -1,2 +1,4 @@
 /.vscode
 /js/Tile.js
+/node_modules
+package-lock.json
