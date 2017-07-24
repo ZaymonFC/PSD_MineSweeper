@@ -327,16 +327,44 @@ class MainMenu extends __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default.a.St
 
     preload() {
         this.load.image('title', '/assets/Title.svg')
+        this.load.image('stdBtn', '/assets/stdBtn.svg')
+        this.load.image('hexBtn', '/assets/hexBtn.svg')
+        this.load.image('highscoreBtn', '/assets/highscoreBtn.svg')
+
     }
 
     create() {
         this.stage.backgroundColor = __WEBPACK_IMPORTED_MODULE_1__GameConfig__["a" /* BGCOLOUR */]
-        this.add.sprite(55, 60, 'title')
+        let titlebar = this.add.sprite(this.world.centerX, 100, 'title').anchor.setTo(0.5, 0.5)
+
+        // Buttons
+        let stdBtn = this.add.button(this.world.centerX + 0.5, 320.5, 'stdBtn', this.stdBtnClick)
+            .anchor.setTo(0.5, 0.5)
+        let hexBtn = this.add.button(this.world.centerX + 0.5, 400.5, 'hexBtn', this.stdBtnClick)
+            .anchor.setTo(0.5, 0.5)
+        let highscoreBtn = this.add.button(this.world.centerX + 0.5, 480.5, 'highscoreBtn', this.stdBtnClick)
+            .anchor.setTo(0.5, 0.5)
     }
 
     update() {
 
     }
+
+    /* 
+    ** Event Handlers
+    */
+    stdBtnClick() {
+        this.game.state.start('GameState')
+    }
+
+    hexBtnClick(){
+        
+    }
+
+    highscoreBtnClick(){
+        
+    }
+
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = MainMenu;
 
@@ -406,7 +434,7 @@ const MINECOUNT = 10
 const TILEDIMENSION = 46
 /* harmony export (immutable) */ __webpack_exports__["f"] = TILEDIMENSION;
 
-const EDGEOFFSET = 10
+const EDGEOFFSET = 115
 /* harmony export (immutable) */ __webpack_exports__["d"] = EDGEOFFSET;
 
 const BGCOLOUR = '#F19C79'
