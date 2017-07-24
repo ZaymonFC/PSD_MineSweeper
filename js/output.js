@@ -95,25 +95,23 @@ let mineSweeper = new __WEBPACK_IMPORTED_MODULE_0__MineSweeper__["a" /* default 
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__phaser_min_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__MainMenu__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__GameState__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__GameConfig__ = __webpack_require__(6);
 
 
 
 
 
-let conf = {
-    height: 720,
-    width: 720
-}
+
 
 class MineSweeper extends __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default.a.Game{
     constructor(){
-        super(conf.height, conf.width, __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default.a.AUTO, '')
+        super(__WEBPACK_IMPORTED_MODULE_3__GameConfig__["e" /* HEIGHT */], __WEBPACK_IMPORTED_MODULE_3__GameConfig__["g" /* WIDTH */], __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default.a.AUTO, '')
         // Load the menu game state
         //let mainMenu = new MainMenu(this.game)
         //let gameState = new GameState(game)
         this.state.add('GameState', __WEBPACK_IMPORTED_MODULE_2__GameState__["a" /* default */])
-        this.state.add('Main Menu', __WEBPACK_IMPORTED_MODULE_1__MainMenu__["a" /* default */])
-        this.state.start('GameState')
+        this.state.add('MainMenu', __WEBPACK_IMPORTED_MODULE_1__MainMenu__["a" /* default */])
+        this.state.start('MainMenu')
     }
     
     updateState(){
@@ -318,19 +316,27 @@ process.umask = function() { return 0; };
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__phaser_min__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min_js__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__phaser_min_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__GameConfig__ = __webpack_require__(6);
 
 
-class MainMenu extends __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.State{
 
-   preload(){
-        game.load.image()
-   }
 
-   create () {
+class MainMenu extends __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default.a.State {
 
-   }
+    preload() {
+        this.load.image('title', '/assets/Title.svg')
+    }
+
+    create() {
+        this.stage.backgroundColor = __WEBPACK_IMPORTED_MODULE_1__GameConfig__["a" /* BGCOLOUR */]
+        this.add.sprite(55, 60, 'title')
+    }
+
+    update() {
+
+    }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = MainMenu;
 
@@ -342,45 +348,70 @@ class MainMenu extends __WEBPACK_IMPORTED_MODULE_0__phaser_min___default.a.State
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min_js__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__phaser_min_js__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__GameConfig__ = __webpack_require__(6);
 
 
-let gameConf = {
-    boardHeight: 10,
-    boardWidth: 10,
-    mineCount: 10,
-    tileDimension: 46,
-    edgeOffset: 10
-}
 
 class GameState extends __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default.a.State {
-    preload(){
-        this.game.load.image('tile', '../assets/square tile.svg')
+    preload() {
+        this.load.image('tile', '../assets/square tile.svg')
     }
 
-    create(){
-        this.stage.backgroundColor = "F19C79"
+    create() {
+        this.stage.backgroundColor = __WEBPACK_IMPORTED_MODULE_1__GameConfig__["a" /* BGCOLOUR */]
         // Create the grid
 
-        this.grid = this.makeGrid();
-        this.add.group(this.grid);
+        this.grid = this.makeGrid()
+        this.add.group(this.grid)
     }
 
-    update(){
+    update() {
 
     }
 
     makeGrid() {
         let grid = this.add.group()
-        for (var i = 0; i < gameConf.boardHeight; i++) {
-            for (var j = 0; j < gameConf.boardWidth; j++) {
-                grid.create(j * gameConf.tileDimension + gameConf.edgeOffset,
-                    i * gameConf.tileDimension + gameConf.edgeOffset, 'tile');
+        for (var i = 0; i < __WEBPACK_IMPORTED_MODULE_1__GameConfig__["b" /* BOARDHEIGHT */]; i++) {
+            for (var j = 0; j < __WEBPACK_IMPORTED_MODULE_1__GameConfig__["c" /* BOARDWIDTH */]; j++) {
+                grid.create(j * __WEBPACK_IMPORTED_MODULE_1__GameConfig__["f" /* TILEDIMENSION */] + __WEBPACK_IMPORTED_MODULE_1__GameConfig__["d" /* EDGEOFFSET */],
+                    i * __WEBPACK_IMPORTED_MODULE_1__GameConfig__["f" /* TILEDIMENSION */] + __WEBPACK_IMPORTED_MODULE_1__GameConfig__["d" /* EDGEOFFSET */], 'tile')
             }
         }
         return grid
     }
 }
 /* harmony export (immutable) */ __webpack_exports__["a"] = GameState;
+
+
+/***/ }),
+/* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+const HEIGHT = 720
+/* harmony export (immutable) */ __webpack_exports__["e"] = HEIGHT;
+
+const WIDTH = 720
+/* harmony export (immutable) */ __webpack_exports__["g"] = WIDTH;
+
+const BOARDHEIGHT = 10
+/* harmony export (immutable) */ __webpack_exports__["b"] = BOARDHEIGHT;
+
+const BOARDWIDTH = 10
+/* harmony export (immutable) */ __webpack_exports__["c"] = BOARDWIDTH;
+
+const MINECOUNT = 10
+/* unused harmony export MINECOUNT */
+
+const TILEDIMENSION = 46
+/* harmony export (immutable) */ __webpack_exports__["f"] = TILEDIMENSION;
+
+const EDGEOFFSET = 10
+/* harmony export (immutable) */ __webpack_exports__["d"] = EDGEOFFSET;
+
+const BGCOLOUR = '#F19C79'
+/* harmony export (immutable) */ __webpack_exports__["a"] = BGCOLOUR;
+
 
 
 /***/ })

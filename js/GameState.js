@@ -1,36 +1,29 @@
 import Phaser from './phaser.min.js'
-
-let gameConf = {
-    boardHeight: 10,
-    boardWidth: 10,
-    mineCount: 10,
-    tileDimension: 46,
-    edgeOffset: 10
-}
+import { BOARDHEIGHT, BOARDWIDTH, TILEDIMENSION, EDGEOFFSET, BGCOLOUR } from './GameConfig'
 
 export default class GameState extends Phaser.State {
-    preload(){
-        this.game.load.image('tile', '../assets/square tile.svg')
+    preload() {
+        this.load.image('tile', '../assets/square tile.svg')
     }
 
-    create(){
-        this.stage.backgroundColor = "F19C79"
+    create() {
+        this.stage.backgroundColor = BGCOLOUR
         // Create the grid
 
-        this.grid = this.makeGrid();
-        this.add.group(this.grid);
+        this.grid = this.makeGrid()
+        this.add.group(this.grid)
     }
 
-    update(){
+    update() {
 
     }
 
     makeGrid() {
         let grid = this.add.group()
-        for (var i = 0; i < gameConf.boardHeight; i++) {
-            for (var j = 0; j < gameConf.boardWidth; j++) {
-                grid.create(j * gameConf.tileDimension + gameConf.edgeOffset,
-                    i * gameConf.tileDimension + gameConf.edgeOffset, 'tile');
+        for (var i = 0; i < BOARDHEIGHT; i++) {
+            for (var j = 0; j < BOARDWIDTH; j++) {
+                grid.create(j * TILEDIMENSION + EDGEOFFSET,
+                    i * TILEDIMENSION + EDGEOFFSET, 'tile')
             }
         }
         return grid

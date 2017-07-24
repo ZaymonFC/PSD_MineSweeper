@@ -1,12 +1,19 @@
-import Phaser from './phaser.min'
+import Phaser from './phaser.min.js'
 
-export default class MainMenu extends Phaser.State{
+import { BGCOLOUR } from './GameConfig'
 
-   preload(){
-        game.load.image()
-   }
+export default class MainMenu extends Phaser.State {
 
-   create () {
+    preload() {
+        this.load.image('title', '/assets/Title.svg')
+    }
 
-   }
+    create() {
+        this.stage.backgroundColor = BGCOLOUR
+        this.add.sprite(55, 60, 'title')
+    }
+
+    update() {
+
+    }
 }

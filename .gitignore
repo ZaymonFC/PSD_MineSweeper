@@ -2,3 +2,5 @@
 /js/Tile.js
 /node_modules
 package-lock.json
+/js/output.js
+/js/output.js.map
