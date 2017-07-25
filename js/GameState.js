@@ -17,10 +17,9 @@ export default class GameState extends Phaser.State {
     preload() {
         // Load the frame boarder
         this.load.image('frameBoarder', '/assets/outerStroke.svg')  
+        
+        
         // Load buttons
-
-
-
         this.load.image('tile', '../assets/Square Tile.svg')
 
     }
