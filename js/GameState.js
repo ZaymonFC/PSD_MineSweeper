@@ -1,9 +1,22 @@
 import Phaser from './phaser.min.js'
 import { BOARDHEIGHT, BOARDWIDTH, TILEDIMENSION, EDGEOFFSET, BGCOLOUR } from './GameConfig'
 
+let images = {
+    square_up: "assets/square_up.svg",
+    square_down: "assets/",
+    square_bomb: "assets/",
+    square_covered: "assets/",
+    hex_up: "assets/",
+    hex_down: "assets/",
+    hex_bomb: "assets/",
+    hex_covered: "assets/"
+}
+
+
 export default class GameState extends Phaser.State {
     preload() {
-        this.load.image('tile', '../assets/square tile.svg')
+        this.load.image('tile', '../assets/Square Tile.svg')
+
     }
 
     create() {
