@@ -5,16 +5,21 @@ import { BGCOLOUR } from './GameConfig'
 export default class MainMenu extends Phaser.State {
 
     preload() {
+        // Load the Titlebar and frameBoarder
         this.load.image('title', '/assets/Title.svg')
+        this.load.image('frameBoarder', '/assets/outerStroke.svg')  
+        // Load the button assets
         this.load.image('stdBtn', '/assets/stdBtn.svg')
         this.load.image('hexBtn', '/assets/hexBtn.svg')
         this.load.image('highscoreBtn', '/assets/highscoreBtn.svg')
+        
 
     }
 
     create() {
         this.stage.backgroundColor = BGCOLOUR
         let titlebar = this.add.sprite(this.world.centerX, 100, 'title').anchor.setTo(0.5, 0.5)
+        let frameBoarder = this.add.sprite(0,0, 'frameBoarder')
 
         // Buttons
         let stdBtn = this.add.button(this.world.centerX + 0.5, 320.5, 'stdBtn', this.stdBtnClick)

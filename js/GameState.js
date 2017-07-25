@@ -15,12 +15,20 @@ let images = {
 
 export default class GameState extends Phaser.State {
     preload() {
+        // Load the frame boarder
+        this.load.image('frameBoarder', '/assets/outerStroke.svg')  
+        // Load buttons
+
+
+
         this.load.image('tile', '../assets/Square Tile.svg')
 
     }
 
     create() {
+        // Set the stage
         this.stage.backgroundColor = BGCOLOUR
+        let frameBoarder = this.add.sprite(0,0, 'frameBoarder')
         // Create the grid
 
         this.grid = this.makeGrid()

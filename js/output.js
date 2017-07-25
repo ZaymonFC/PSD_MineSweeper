@@ -357,16 +357,21 @@ process.umask = function() { return 0; };
 class MainMenu extends __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default.a.State {
 
     preload() {
+        // Load the Titlebar and frameBoarder
         this.load.image('title', '/assets/Title.svg')
+        this.load.image('frameBoarder', '/assets/outerStroke.svg')  
+        // Load the button assets
         this.load.image('stdBtn', '/assets/stdBtn.svg')
         this.load.image('hexBtn', '/assets/hexBtn.svg')
         this.load.image('highscoreBtn', '/assets/highscoreBtn.svg')
+        
 
     }
 
     create() {
         this.stage.backgroundColor = __WEBPACK_IMPORTED_MODULE_1__GameConfig__["a" /* BGCOLOUR */]
         let titlebar = this.add.sprite(this.world.centerX, 100, 'title').anchor.setTo(0.5, 0.5)
+        let frameBoarder = this.add.sprite(0,0, 'frameBoarder')
 
         // Buttons
         let stdBtn = this.add.button(this.world.centerX + 0.5, 320.5, 'stdBtn', this.stdBtnClick)
@@ -411,13 +416,34 @@ class MainMenu extends __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default.a.St
 
 
 
+let images = {
+    square_up: "assets/square_up.svg",
+    square_down: "assets/",
+    square_bomb: "assets/",
+    square_covered: "assets/",
+    hex_up: "assets/",
+    hex_down: "assets/",
+    hex_bomb: "assets/",
+    hex_covered: "assets/"
+}
+
+
 class GameState extends __WEBPACK_IMPORTED_MODULE_0__phaser_min_js___default.a.State {
     preload() {
+        // Load the frame boarder
+        this.load.image('frameBoarder', '/assets/outerStroke.svg')  
+        // Load buttons
+
+
+
         this.load.image('tile', '../assets/Square Tile.svg')
+
     }
 
     create() {
+        // Set the stage
         this.stage.backgroundColor = __WEBPACK_IMPORTED_MODULE_1__GameConfig__["a" /* BGCOLOUR */]
+        let frameBoarder = this.add.sprite(0,0, 'frameBoarder')
         // Create the grid
 
         this.grid = this.makeGrid()
