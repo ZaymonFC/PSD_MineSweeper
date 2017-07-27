@@ -49,13 +49,13 @@ def add_mines(w, h, mineCount):
                     count = count - 1
     return mines
 
-def count_surrounds(graph, i, j, mines){
+def count_surrounds(graph, i, j, mines):
     count = 0
     for neighbor in graph[i,j]:
         if mines[neighbor[0]][neighbor[1]] == 1:
             count += 1
     return count
-}
+
 
 def calc_mines(graph, mines, w, h):
     button_numbers = [[0 for col in range(w)] for row in range(h)]
@@ -67,7 +67,7 @@ def calc_mines(graph, mines, w, h):
             # Else calculate the buttons value
             else:
                 button_numbers[i][j] = count_surrounds(graph, i, j, mines)
-
+    return button_numbers
 
 
 height = 10
@@ -78,28 +78,42 @@ graph = create_graph(width, height)
 mines = add_mines(width, height, 10)
 button_numbers = calc_mines(graph, mines, width, height)
 
-# from tkinter import *
+for i in range(height):
+    for j in range(width):
+        print(button_numbers[i][j], end='\t')
+    print()
 
-# root = Tk()
-# frame=Frame(root)
-# Grid.rowconfigure(root, 0, weight=1)
-# Grid.columnconfigure(root, 0, weight=1)
-# frame.grid(row=0, column=0, sticky=N+S+E+W)
-# grid=Frame(frame)
-# grid.grid(sticky=N+S+E+W, column=0, row=7, columnspan=2)
-# Grid.rowconfigure(frame, 7, weight=1)
-# Grid.columnconfigure(frame, 0, weight=1)
+from tkinter import *
 
-# #example values
-# for x in range(10):
-#     for y in range(5):
-#         btn = Button(frame)
-#         btn.grid(column=x, row=y, sticky=N+S+E+W)
+root = Tk()
+frame=Frame(root)
+Grid.rowconfigure(root, 0, weight=1)
+Grid.columnconfigure(root, 0, weight=1)
+frame.grid(row=0, column=0, sticky=N+S+E+W)
+grid=Frame(frame)
+grid.grid(sticky=N+S+E+W, column=0, row=7, columnspan=2)
+Grid.rowconfigure(frame, 7, weight=1)
+Grid.columnconfigure(frame, 0, weight=1)
 
-# for x in range(10):
-#   Grid.columnconfigure(frame, x, weight=1)
+#example values
+for i in range(10):
+    for j in range(10):
+        btn_value = button_numbers[i][j]
+        btn = Button(frame, text=btn_value)
+        if btn_value == 1:
+            btn.configure(bg='blue')
+        elif btn_value == 2:
+            btn.configure(bg='green')
+        elif btn_value == 3:
+            btn.configure(bg='red')
+        elif btn_value == -1:
+            btn.configure(bg='black')
+        btn.grid(column=j, row=i, sticky=N+S+E+W)
 
-# for y in range(5):
-#   Grid.rowconfigure(frame, y, weight=1)
+for i in range(10):
+  Grid.columnconfigure(frame, i, weight=1)
 
-# root.mainloop()
+for j in range(10):
+  Grid.rowconfigure(frame, j, weight=1)
+
+root.mainloop()
