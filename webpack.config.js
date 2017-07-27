@@ -1,5 +1,5 @@
 module.exports = {
-    entry: "./js/main.js",
+    entry: "./js/__entrypoint.js",
     output: {
         filename: './js/output.js'
     },
