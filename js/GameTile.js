@@ -10,10 +10,16 @@ export default class GameTile extends Phaser.Button{
         this.y = y
         this.i = i
         this.j = j
-        this.anchor = (0.5, 0.5)
+        this.anchor.setTo(0.5, 0.5)
         
-        this.marked = false
-        this.covered = false
+
+
+        this.inputEnabled = true;
+        this.input.useHandCursor = true;
+        this.events.onInputOut.add(this.rollOut, this);
+        this.events.onInputOver.add(this.rollOver, this);
+        this.marked = false;
+
     }
     
     

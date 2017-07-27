@@ -32,20 +32,20 @@ export default class GameState extends Phaser.State {
         let frameBoarder = this.add.sprite(0,0, 'frameBoarder')
         // Create the grid
 
-        let grid = this.makeGrid()
-        this.add.group(this.grid)
+        // let grid = this.makeGrid()
+        // this.add.group(this.grid)
 
         // Create an adjacency list representation of the board
-        let graph = createGraph();
+        // let graph = this.createGraph();
+        // console.log(graph[0])
 
-        // Create an array of mines
-        let mines = createMines();
+        //Create an array of mines
+        let mines = this.makeGrid();
     }
 
     update() {
 
     }
-
 
     // New Makegrid function
     makeGrid(){
@@ -60,54 +60,60 @@ export default class GameState extends Phaser.State {
         return grid
     }
 
+    
     createGraph(){
         let graph = {}
         let w = BOARDWIDTH
         let h = BOARDHEIGHT
 
         for (var i = 0; i < w; i++){
+            let array = new Array()
             for (var j = 0; j < h; j++){
-                let values = new Array()
                 // Top left
                 if (i - 1 > 0 && j - 1 > 0){
-                    array.push((i,j))
+                    array.push([i,j])
                 }
                 // Top
                 if (i - 1 < 0){
-
+                    array.push([i,j])
                 }
                 // Top Right
                 if (i - 1 < 0 && j + 1 < w){
-
+                    array.push([i,j])
                 }
                 // Right
                 if (j + 1 < w){
-
+                    array.push([i,j])
                 }
                 // Bottom Right
                 if (i + 1 < h && j + 1 < w){
-
+                    array.push([i,j])
                 }
                 // Bottom
                 if (i + 1 < h){
-
+                    array.push([i,j])
                 }
                 // Bottom Left
                 if (i + 1 < h && j - 1 > 0){
-
+                    array.push([i,j])
                 }
                 // Left
                 if (j -1 > 0){
-                    
+                    array.push([i,j])  
                 }
+                graph[i * h + j] = array
             }
         }
+        return graph
     }
 
     createMines(){
         return 0
     }
     
+
+
+
 
     // makeGrid() {
     //     let grid = this.add.group()
