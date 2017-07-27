@@ -1,8 +1,11 @@
 
-import Phaser from 'js/phaser.min.js'
+import Phaser from './phaser.min.js'
 
 export default class GameTile extends Phaser.Button{
-    constructor(game, x, y, key, i, j, type){
+    constructor(game, x, y, key, i, j){
+        super(game, x, y, key)
+        this.key = key
+        this.game = game
         this.x = x
         this.y = y
         this.i = i
@@ -10,16 +13,16 @@ export default class GameTile extends Phaser.Button{
         this.anchor = (0.5, 0.5)
         
         this.marked = false
-        if (type == 'Mine'){
-            this.mine = true
-        } else {
-            this.mine = false
-        }
+        this.covered = false
+    }
+    
+    
+    setMine(){
 
     }
 
-    addComponent(){
-        
+    checkMine(){
+
     }
 
     over(){
@@ -35,27 +38,11 @@ export default class GameTile extends Phaser.Button{
     }
 
     actionOnHold(){
-        
+
     }
 
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

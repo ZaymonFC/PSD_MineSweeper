@@ -12,6 +12,7 @@ export default class MineSweeper extends Phaser.Game{
         //let gameState = new GameState(game)
         this.state.add('GameState', GameState)
         this.state.add('MainMenu', MainMenu)
-        this.state.start('MainMenu')
+        //this.state.start('MainMenu')
+        this.state.start('GameState')
     }
 }
