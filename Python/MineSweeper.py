@@ -76,7 +76,7 @@ def reveal_mines(buttons):
     for i in range(height):
         for j in range(width):
             if mines[i][j] == 1:
-                buttons[i][j].configure(text="x", relief=SUNKEN, bg='red')
+                buttons[i][j].configure(text="", relief=SUNKEN, image=bombImage)
             buttons[i][j].configure(command='')
 
 
@@ -85,7 +85,7 @@ def recursive_reveal(buttons, i, j):
     grow_list = []
     for neighbor in neighbors:
         if button_numbers[neighbor[0]][neighbor[1]] == 0:
-            buttons[neighbor[0]][neighbor[1]].configure(relief=SUNKEN, text='0')
+            buttons[neighbor[0]][neighbor[1]].configure(relief=SUNKEN, text='0', image=downImg)
             grow_list.append([neighbor[0],neighbor[1]])
             button_numbers[neighbor[0]][neighbor[1]] = 'd'
     if len(grow_list) > 0:
@@ -94,8 +94,7 @@ def recursive_reveal(buttons, i, j):
 
 
 def grid_callback(i, j, buttons, btn_value):
-    buttons[i][j].configure(relief=SUNKEN)
-    buttons[i][j].configure(text=btn_value)
+    buttons[i][j].configure(relief=SUNKEN, text=btn_value, image=downImg)
 
     # Handle the game loss
     if btn_value == -1:
@@ -104,22 +103,22 @@ def grid_callback(i, j, buttons, btn_value):
     if btn_value == 0:
         recursive_reveal(buttons, i, j)
     # Else
-    if btn_value == 1:
-        buttons[i][j].configure(bg='blue')
-    elif btn_value == 2:
-        buttons[i][j].configure(bg='green')
-    elif btn_value == 3:
-        buttons[i][j].configure(bg='orange')
-    elif btn_value == 4:
-        buttons[i][j].configure(bg='purple')
-    elif btn_value == -1:
-        buttons[i][j].configure(bg='red')
+    # if btn_value == 1:
+    #     buttons[i][j].configure(bg='blue')
+    # elif btn_value == 2:
+    #     buttons[i][j].configure(bg='green')
+    # elif btn_value == 3:
+    #     buttons[i][j].configure(bg='orange')
+    # elif btn_value == 4:
+    #     buttons[i][j].configure(bg='purple')
+    # elif btn_value == -1:
+    #     buttons[i][j].configure(bg='red')
     print(i, j)
 
 
 # Main Method
-height = 15
-width = 15
+height = 8
+width = 8
 
 # Create the graph
 graph = create_graph(width, height)
@@ -158,13 +157,15 @@ root = Tk()
 Grid.rowconfigure(root, 0, weight=1)
 Grid.columnconfigure(root, 0, weight=1)
 
-img = PhotoImage('assets/square_up.png')
 
 #Create & Configure frame 
 frame=Frame(root)
 frame.grid(row=0, column=0)
 frame.pack(side=TOP)
 
+img = PhotoImage(file="assets/square_up.png")
+downImg = PhotoImage(file="assets/square_down.png")
+bombImage = PhotoImage(file="assets/square_bomb.png")
 buttons = []
 
 for row_index in range(height):
@@ -175,14 +176,15 @@ for row_index in range(height):
         Grid.columnconfigure(frame, col_index, weight=1)
         
         # Create button and add an anonymous function to call callback with it's coordinates
-        btn = Button(frame, image=img, height=23, width=23, compound='left')
+        btn = Button(frame, image=img, height=45, width=45, compound=CENTER, state=None, bd=0)
         # Configure the buttons call back to call with position and it's value
         btn.configure(command=lambda i = row_index, j = col_index, value=btn_value: grid_callback(i, j, buttons, value))
+
         btn.grid(row=row_index, column=col_index)
         buttons[row_index].append(btn)
 
 # Add bottom frame with action buttons
-menu_frame = Frame(root)
+menu_frame = Frame(root, bg="#F19C79")
 menu_frame.pack(side=BOTTOM)
 restart_button = Button(menu_frame, text="Restart")
 restart_button.grid(row=0)
