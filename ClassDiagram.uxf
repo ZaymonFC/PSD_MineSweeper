@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>400</y>
+      <w>180</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>Game
+--
+graph : Dictionary
+mines: List[int][int]
+button_values: List[int][int]
+type:string
+
+--
++main():void
+- init():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>440</x>
+      <y>160</y>
+      <w>130</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>MineSweeper
+--
+
+--
++main():void
+- init():void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>640</x>
+      <y>160</y>
+      <w>410</w>
+      <h>200</h>
+    </coordinates>
+    <panel_attributes>Viewer
+--
+- type: string
+- buttons : Button
+- root : TK
+- frame: Frame
+
+--
+- init():void
+- create_buttons(width, height, button_values): List&lt;Button&gt;[][]
+- grid_callback(i, j, buttons, btn_value): void
+- reveal_mines(buttons, mines)
+- recursive_reveal(i, j, buttons):void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>830</x>
+      <y>200</y>
+      <w>320</w>
+      <h>220</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+-game</panel_attributes>
+    <additional_attributes>220.0;10.0;260.0;10.0;260.0;190.0;10.0;190.0;10.0;200.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>560</x>
+      <y>170</y>
+      <w>100</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+-viewer</panel_attributes>
+    <additional_attributes>80.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+</diagram>
