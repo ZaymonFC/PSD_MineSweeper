@@ -4,34 +4,34 @@ from tkinter import *
 from functools import partial
 
 def create_graph(w, h):
+    """ Function to create the graph for a board of n * n size """
     graph = {}
-
     for i in range(h):
         for j in range(w):
             neighbors = []
             # Top left
-            if (i - 1 >= 0 and j - 1 >= 0):
+            if i - 1 >= 0 and j - 1 >= 0:
                 neighbors.append((i - 1, j - 1))
             # Top
-            if (i - 1 >= 0):
+            if i - 1 >= 0:
                 neighbors.append((i - 1, j))
             # Top Right
-            if (i - 1 >= 0 and j + 1 < w):
+            if i - 1 >= 0 and j + 1 < w:
                 neighbors.append((i - 1, j + 1))
             # Right
-            if (j + 1 < w):
+            if j + 1 < w:
                 neighbors.append((i, j + 1))
             # Bottom Right
-            if (i + 1 < h and j + 1 < w):
+            if i + 1 < h and j + 1 < w:
                 neighbors.append((i + 1, j + 1))
             # Bottom
-            if (i + 1 < h):
+            if i + 1 < h:
                 neighbors.append((i + 1, j))
             # Bottom Left
-            if (i + 1 < h and j - 1 >= 0):
+            if i + 1 < h and j - 1 >= 0:
                 neighbors.append((i + 1, j - 1))
             # Left
-            if (j - 1 >= 0):
+            if j - 1 >= 0:
                 neighbors.append((i, j - 1))
             graph[(i,j)] = neighbors
     return graph
@@ -40,11 +40,11 @@ def add_mines(w, h, mineCount):
     mines = [[0 for col in range(w)] for row in range(h)]
     count = mineCount
     done = False
-    while(not done):
+    while not done:
         for i in range(h):
             for j in range(w):
                 if mines[i][j] != 1 and rand.random() > 0.91:
-                    if(count < 0):
+                    if count < 0:
                         done = True
                         break
                     mines[i][j] = 1
@@ -72,10 +72,48 @@ def calc_mines(graph, mines, w, h):
                 button_numbers[i][j] = count_surrounds(graph, i, j, mines)
     return button_numbers
 
+def revealmines(buttons):
+    for i in range(height):
+        for j in range(width):
+            if mines[i][j] == 1:
+                buttons[i][j].configure(text="x", relief=SUNKEN, bg='red')
+            buttons[i][j].configure(command='')
 
-def grid_callback(i, j, btn):
-    # if 
-    btn[i][j].configure(bg='green')
+
+def recursiveReveal(buttons, i, j):
+    neighbors = graph[i,j]
+    grow_list = []
+    for neighbor in neighbors:
+        if button_numbers[neighbor[0]][neighbor[1]] == 0:
+            buttons[neighbor[0]][neighbor[1]].configure(relief=SUNKEN, text='0')
+            grow_list.append([neighbor[0],neighbor[1]])
+            button_numbers[neighbor[0]][neighbor[1]] = 'd'
+    if len(grow_list) > 0:
+        for neighbor in grow_list:
+           recursiveReveal(buttons, neighbor[0], neighbor[1])
+
+
+def grid_callback(i, j, buttons, btn_value):
+    buttons[i][j].configure(relief=SUNKEN)
+    buttons[i][j].configure(text=btn_value)
+
+    # Handle the game loss
+    if btn_value == -1:
+        revealmines(buttons)
+    # If 0 Recursive Reveal
+    if btn_value == 0:
+        recursiveReveal(buttons, i, j)
+    # Else
+    if btn_value == 1:
+        buttons[i][j].configure(bg='blue')
+    elif btn_value == 2:
+        buttons[i][j].configure(bg='green')
+    elif btn_value == 3:
+        buttons[i][j].configure(bg='orange')
+    elif btn_value == 4:
+        buttons[i][j].configure(bg='purple')
+    elif btn_value == -1:
+        buttons[i][j].configure(bg='red')
     print(i, j)
 
 
@@ -137,19 +175,8 @@ for row_index in range(height):
         Grid.columnconfigure(frame, col_index, weight=1)
         
         # Create button and add an anonymous function to call callback with it's coordinates
-        btn = Button(frame, image=img, height=20, width=20, compound='left', text=btn_value)
-        btn.configure(command=lambda i = row_index, j = col_index, value=btn_value: grid_callback(i, j, buttons))
-
-        # if btn_value == 1:
-        #     btn.configure(bg='blue')
-        # elif btn_value == 2:
-        #     btn.configure(bg='green')
-        # elif btn_value == 3:
-        #     btn.configure(bg='orange')
-        # elif btn_value == 4:
-        #     btn.configure(bg='purple')
-        # elif btn_value == -1:
-        #     btn.configure(bg='red')
+        btn = Button(frame, image=img, height=20, width=20, compound='left')
+        btn.configure(command=lambda i = row_index, j = col_index, value=btn_value: grid_callback(i, j, buttons, value))
         btn.grid(row=row_index, column=col_index)
         buttons[row_index].append(btn)
 
@@ -167,8 +194,3 @@ quit_button = Button(menu_frame, text="Quit", command=lambda x=1: quit(x))
 quit_button.grid(row=0, column=2)
 root.mainloop()
 
-
-
-
-
-root.mainloop()
