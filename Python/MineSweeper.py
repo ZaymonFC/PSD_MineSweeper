@@ -72,7 +72,7 @@ def calc_mines(graph, mines, w, h):
                 button_numbers[i][j] = count_surrounds(graph, i, j, mines)
     return button_numbers
 
-def revealmines(buttons):
+def reveal_mines(buttons):
     for i in range(height):
         for j in range(width):
             if mines[i][j] == 1:
@@ -80,7 +80,7 @@ def revealmines(buttons):
             buttons[i][j].configure(command='')
 
 
-def recursiveReveal(buttons, i, j):
+def recursive_reveal(buttons, i, j):
     neighbors = graph[i,j]
     grow_list = []
     for neighbor in neighbors:
@@ -90,7 +90,7 @@ def recursiveReveal(buttons, i, j):
             button_numbers[neighbor[0]][neighbor[1]] = 'd'
     if len(grow_list) > 0:
         for neighbor in grow_list:
-           recursiveReveal(buttons, neighbor[0], neighbor[1])
+           recursive_reveal(buttons, neighbor[0], neighbor[1])
 
 
 def grid_callback(i, j, buttons, btn_value):
@@ -99,10 +99,10 @@ def grid_callback(i, j, buttons, btn_value):
 
     # Handle the game loss
     if btn_value == -1:
-        revealmines(buttons)
+        reveal_mines(buttons)
     # If 0 Recursive Reveal
     if btn_value == 0:
-        recursiveReveal(buttons, i, j)
+        recursive_reveal(buttons, i, j)
     # Else
     if btn_value == 1:
         buttons[i][j].configure(bg='blue')
@@ -118,8 +118,8 @@ def grid_callback(i, j, buttons, btn_value):
 
 
 # Main Method
-height = 10
-width = 10
+height = 30
+width = 30
 
 # Create the graph
 graph = create_graph(width, height)
@@ -175,13 +175,13 @@ for row_index in range(height):
         Grid.columnconfigure(frame, col_index, weight=1)
         
         # Create button and add an anonymous function to call callback with it's coordinates
-        btn = Button(frame, image=img, height=20, width=20, compound='left')
+        btn = Button(frame, image=img, height=23, width=23, compound='left')
+        # Configure the buttons call back to call with position and it's value
         btn.configure(command=lambda i = row_index, j = col_index, value=btn_value: grid_callback(i, j, buttons, value))
         btn.grid(row=row_index, column=col_index)
         buttons[row_index].append(btn)
 
-
-
+# Add bottom frame with action buttons
 menu_frame = Frame(root)
 menu_frame.pack(side=BOTTOM)
 restart_button = Button(menu_frame, text="Restart")
@@ -191,6 +191,10 @@ menu_button = Button(menu_frame, text="Main Menu")
 menu_button.grid(row=0, column=1)
 
 quit_button = Button(menu_frame, text="Quit", command=lambda x=1: quit(x))
-quit_button.grid(row=0, column=2)
+quit_button.grid(row=0, column=2) 
+
+# Add Top Frame with 
+
+
 root.mainloop()
 
