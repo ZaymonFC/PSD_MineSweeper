@@ -118,8 +118,8 @@ def grid_callback(i, j, buttons, btn_value):
 
 
 # Main Method
-height = 30
-width = 30
+height = 15
+width = 15
 
 # Create the graph
 graph = create_graph(width, height)
