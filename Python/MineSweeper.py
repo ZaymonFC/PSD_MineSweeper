@@ -1,5 +1,7 @@
 # This is the python implementation of minesweeper
 import random as rand
+from tkinter import *
+from functools import partial
 
 def create_graph(w, h):
     graph = {}
@@ -52,6 +54,7 @@ def add_mines(w, h, mineCount):
 def count_surrounds(graph, i, j, mines):
     count = 0
     for neighbor in graph[i,j]:
+
         if mines[neighbor[0]][neighbor[1]] == 1:
             count += 1
     return count
@@ -70,50 +73,102 @@ def calc_mines(graph, mines, w, h):
     return button_numbers
 
 
+def grid_callback(i, j, btn):
+    # if 
+    btn[i][j].configure(bg='green')
+    print(i, j)
+
+
+# Main Method
 height = 10
 width = 10
 
 # Create the graph
 graph = create_graph(width, height)
-mines = add_mines(width, height, 10)
+
+total_cells = height * width;
+ez_density = 0.1
+mine_number = total_cells * ez_density;
+
+print(total_cells, mine_number)
+
+mines = add_mines(width, height, mine_number)
+
 button_numbers = calc_mines(graph, mines, width, height)
+
+print(graph[1,1])
+
+print("Mines")
+for i in range(height):
+    for j in range(width):
+        print(mines[i][j], end='\t')
+    print()
+
+print("Button Numbers")
 
 for i in range(height):
     for j in range(width):
         print(button_numbers[i][j], end='\t')
     print()
 
-from tkinter import *
+
+###                        ###
+# : All the GUI Stuff here : #
+###                        ###
 
 root = Tk()
-frame=Frame(root)
 Grid.rowconfigure(root, 0, weight=1)
 Grid.columnconfigure(root, 0, weight=1)
-frame.grid(row=0, column=0, sticky=N+S+E+W)
-grid=Frame(frame)
-grid.grid(sticky=N+S+E+W, column=0, row=7, columnspan=2)
-Grid.rowconfigure(frame, 7, weight=1)
-Grid.columnconfigure(frame, 0, weight=1)
 
-#example values
-for i in range(10):
-    for j in range(10):
-        btn_value = button_numbers[i][j]
-        btn = Button(frame, text=btn_value)
-        if btn_value == 1:
-            btn.configure(bg='blue')
-        elif btn_value == 2:
-            btn.configure(bg='green')
-        elif btn_value == 3:
-            btn.configure(bg='red')
-        elif btn_value == -1:
-            btn.configure(bg='black')
-        btn.grid(column=j, row=i, sticky=N+S+E+W)
+img = PhotoImage('assets/square_up.png')
 
-for i in range(10):
-  Grid.columnconfigure(frame, i, weight=1)
+#Create & Configure frame 
+frame=Frame(root)
+frame.grid(row=0, column=0)
+frame.pack(side=TOP)
 
-for j in range(10):
-  Grid.rowconfigure(frame, j, weight=1)
+buttons = []
+
+for row_index in range(height):
+    buttons.append([])
+    Grid.rowconfigure(frame, row_index, weight=1)
+    for col_index in range(width):
+        btn_value = button_numbers[row_index][col_index]
+        Grid.columnconfigure(frame, col_index, weight=1)
+        
+        # Create button and add an anonymous function to call callback with it's coordinates
+        btn = Button(frame, image=img, height=20, width=20, compound='left', text=btn_value)
+        btn.configure(command=lambda i = row_index, j = col_index, value=btn_value: grid_callback(i, j, buttons))
+
+        # if btn_value == 1:
+        #     btn.configure(bg='blue')
+        # elif btn_value == 2:
+        #     btn.configure(bg='green')
+        # elif btn_value == 3:
+        #     btn.configure(bg='orange')
+        # elif btn_value == 4:
+        #     btn.configure(bg='purple')
+        # elif btn_value == -1:
+        #     btn.configure(bg='red')
+        btn.grid(row=row_index, column=col_index)
+        buttons[row_index].append(btn)
+
+
+
+menu_frame = Frame(root)
+menu_frame.pack(side=BOTTOM)
+restart_button = Button(menu_frame, text="Restart")
+restart_button.grid(row=0)
+
+menu_button = Button(menu_frame, text="Main Menu")
+menu_button.grid(row=0, column=1)
+
+quit_button = Button(menu_frame, text="Quit", command=lambda x=1: quit(x))
+quit_button.grid(row=0, column=2)
+root.mainloop()
+
+
+
+
 
 root.mainloop()
