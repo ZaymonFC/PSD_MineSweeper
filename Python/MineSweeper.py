@@ -88,6 +88,8 @@ def recursive_reveal(buttons, i, j):
             buttons[neighbor[0]][neighbor[1]].configure(relief=SUNKEN, text='0', image=downImg)
             grow_list.append([neighbor[0],neighbor[1]])
             button_numbers[neighbor[0]][neighbor[1]] = 'd'
+        elif button_numbers[neighbor[0]][neighbor[1]] == 1:
+            buttons[neighbor[0]][neighbor[1]].configure(relief=SUNKEN, text='1', image=downImg)
     if len(grow_list) > 0:
         for neighbor in grow_list:
            recursive_reveal(buttons, neighbor[0], neighbor[1])
