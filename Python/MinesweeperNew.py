@@ -6,28 +6,43 @@
 # ─── DATE: 30TH 08 2017 ─────────────────────────────────────────────────────────
 # ────────────────────────────────────────────────────────────────────────────────
 
-import GameController
-import Board
-import SquareView
-import MainMenu
+# Import Modules
+from tkinter import *
+
+# Import Classes
+#from GameController import GameController
+#from Board import Board
+#from View import View
+from MainMenu import MainMenu
+
 
 class Minesweeper:
     def __init__(self):
         #
+        # ─── CREATE ROOT WINDOW ──────────────────────────────────────────
+        #
+        self.root = Tk()
+        self.root.title("Z-Sweeper")
+        self.root.resizable(False, False)
+        
+        #
         # ─── DISPLAY MAIN MENU AND POPULATE GAME SETTINGS ────────────────
         #
         self.game_settings = {}
-        self.main_menu = Menu(game_settings)
+        self.main_menu = MainMenu(self.root, self.game_settings)
+        self.root.mainloop()
+        print(self.game_settings['mode'])
+        # self.main_menu = MainMenu(self.root, self.game_settings)
+
+        self.root.mainloop()
 
         #
         # ─── CREATE GAME WITH SETTINGS ───────────────────────────────────
         #
-        mine_density = 0.15
-        dimension = 8
-        self.board = Board("square", mine_density, dimension)
-        self.game_controller = GameController(board)
-        self.view = View(board, game_controller)
+        # mine_density = 0.15
+        # dimension = 8
+        # self.board = Board("square", mine_density, dimension)
+        # self.game_controller = GameController(board)
+        # self.view = View(board, game_controller)
 
-    def run(self):
-
-        
+Minesweeper()
