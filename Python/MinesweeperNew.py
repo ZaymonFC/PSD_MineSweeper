@@ -1,11 +1,10 @@
 # ────────────────────────────────────────────────────────────────────────────────
-# ─── MINESWEEPER Game ───────────────────────────────────────────────────────────
+# ─── MINESWEEPER GAME ───────────────────────────────────────────────────────────
 # ─── ENTIRE GAME IMPLEMENTATION FOR MINESWEEPER ─────────────────────────────────
 # ─── AUTHOR: ZAYMON FOULDS COOK ─────────────────────────────────────────────────
 # ─── VERSION: 0.1 ───────────────────────────────────────────────────────────────
 # ─── DATE: 30TH 08 2017 ─────────────────────────────────────────────────────────
 # ────────────────────────────────────────────────────────────────────────────────
-
 
 import GameController
 import Board
@@ -13,7 +12,7 @@ import SquareView
 import MainMenu
 
 class Minesweeper:
-    def __init__():
+    def __init__(self):
         #
         # ─── DISPLAY MAIN MENU AND POPULATE GAME SETTINGS ────────────────
         #
@@ -29,6 +28,6 @@ class Minesweeper:
         self.game_controller = GameController(board)
         self.view = View(board, game_controller)
 
-    def run():
+    def run(self):
 
         

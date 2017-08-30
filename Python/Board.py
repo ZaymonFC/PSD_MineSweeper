@@ -19,7 +19,7 @@ class Board:
 #
 # ─── SETUP FUNCTIONS ────────────────────────────────────────────────────────────
 #
-    def create_graph(type, width, height):
+    def create_graph(self, type, width, height):
         """ Function to create the graph for a board of n * n size """
         graph = {}
         for i in range(h):
@@ -53,7 +53,7 @@ class Board:
         return graph
 
 
-    def add_mines(w, h, mineCount):
+    def add_mines(self, w, h, mineCount):
         mines = [[0 for col in range(w)] for row in range(h)]
         count = mineCount
         done = False
@@ -69,7 +69,7 @@ class Board:
         return mines
 
 
-    def calc_mines(graph, mines, w, h):
+    def calc_mines(self, graph, mines, w, h):
         button_numbers = [[0 for col in range(w)] for row in range(h)]
         for i in range (h):
             for j in range(w):
@@ -82,7 +82,7 @@ class Board:
         return button_numbers
 
 
-    def count_surrounds(graph, i, j, mines):
+    def count_surrounds(self, graph, i, j, mines):
         count = 0
         for neighbor in graph[i,j]:
             if mines[neighbor[0]][neighbor[1]] == 1:
@@ -93,7 +93,7 @@ class Board:
 #
 # ─── STATE MODIFICATION FUNCTIONS ───────────────────────────────────────────────
 #
-    def recursive_reveal(i, j):
+    def recursive_reveal(self, i, j):
         neighbors = self.graph[i,j]
         grow_list = []
         for neighbor in neighbors:
@@ -114,7 +114,7 @@ class Board:
             recursive_reveal(neighbor[0], neighbor[1])
 
 
-    def toggle_button(i, j):
+    def toggle_button(self, i, j):
         if self.toggles[i][j]:
             return 0
         self.toggles[i][j] = True
@@ -130,13 +130,13 @@ class Board:
 #
 # ─── GETTERS ────────────────────────────────────────────────────────────────────
 #
-    def get_state_toggles():
+    def get_state_toggles(self):
         return self.toggles
 
 
-    def get_state_button_numbers():
+    def get_state_button_numbers(self):
         return self.button_numbers
 
     
-    def get_state_board_type():
+    def get_state_board_type(self):
         return self.board_type

@@ -4,10 +4,16 @@
 #####   ---------------------------------------------------------------   #####
 
 class GameController:
-    def __init__(board):
-        # Get user selection
+    def __init__(self, board):
+        self.board = board
+    
 
-        # Mode / difficulty
+#
+# ─── MUTATE BOARD STATE AFTER RECEIVING ACTION FROM VIEW ────────────────────────
+#   
+    def activate(self, i, j):
+        print(i, j)
 
+    
         
 
