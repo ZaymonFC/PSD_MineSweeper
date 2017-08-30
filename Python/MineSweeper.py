@@ -3,6 +3,7 @@ import random as rand
 from tkinter import *
 from functools import partial
 
+
 def create_graph(w, h):
     """ Function to create the graph for a board of n * n size """
     graph = {}
@@ -33,8 +34,9 @@ def create_graph(w, h):
             # Left
             if j - 1 >= 0:
                 neighbors.append((i, j - 1))
-            graph[(i,j)] = neighbors
+            graph[(i, j)] = neighbors
     return graph
+
 
 def add_mines(w, h, mineCount):
     mines = [[0 for col in range(w)] for row in range(h)]
@@ -51,10 +53,10 @@ def add_mines(w, h, mineCount):
                     count = count - 1
     return mines
 
+
 def count_surrounds(graph, i, j, mines):
     count = 0
-    for neighbor in graph[i,j]:
-
+    for neighbor in graph[i, j]:
         if mines[neighbor[0]][neighbor[1]] == 1:
             count += 1
     return count
@@ -62,7 +64,7 @@ def count_surrounds(graph, i, j, mines):
 
 def calc_mines(graph, mines, w, h):
     button_numbers = [[0 for col in range(w)] for row in range(h)]
-    for i in range (h):
+    for i in range(h):
         for j in range(w):
             # add -1 if the button is over a bomb
             if mines[i][j] == 1:
@@ -72,24 +74,28 @@ def calc_mines(graph, mines, w, h):
                 button_numbers[i][j] = count_surrounds(graph, i, j, mines)
     return button_numbers
 
+
 def reveal_mines(buttons):
     for i in range(height):
         for j in range(width):
             if mines[i][j] == 1:
-                buttons[i][j].configure(text="", relief=SUNKEN, image=bombImage)
+                buttons[i][j].configure(
+                    text="", relief=SUNKEN, image=bombImage)
             buttons[i][j].configure(command='')
 
 
 def recursive_reveal(buttons, i, j):
-    neighbors = graph[i,j]
+    neighbors = graph[i, j]
     grow_list = []
     for neighbor in neighbors:
         if button_numbers[neighbor[0]][neighbor[1]] == 0:
-            buttons[neighbor[0]][neighbor[1]].configure(relief=SUNKEN, text='0', image=downImg)
-            grow_list.append([neighbor[0],neighbor[1]])
+            buttons[neighbor[0]][neighbor[1]].configure(
+                relief=SUNKEN, text='0', image=downImg)
+            grow_list.append([neighbor[0], neighbor[1]])
             button_numbers[neighbor[0]][neighbor[1]] = 'd'
         elif button_numbers[neighbor[0]][neighbor[1]] == 1:
-            buttons[neighbor[0]][neighbor[1]].configure(relief=SUNKEN, text='1', image=downImg)
+            buttons[neighbor[0]][neighbor[1]].configure(
+                relief=SUNKEN, text='1', image=downImg)
     if len(grow_list) > 0:
         for neighbor in grow_list:
            recursive_reveal(buttons, neighbor[0], neighbor[1])
@@ -125,9 +131,9 @@ width = 8
 # Create the graph
 graph = create_graph(width, height)
 
-total_cells = height * width;
+total_cells = height * width
 ez_density = 0.1
-mine_number = total_cells * ez_density;
+mine_number = total_cells * ez_density
 
 print(total_cells, mine_number)
 
@@ -135,7 +141,7 @@ mines = add_mines(width, height, mine_number)
 
 button_numbers = calc_mines(graph, mines, width, height)
 
-print(graph[1,1])
+print(graph[1, 1])
 
 print("Mines")
 for i in range(height):
@@ -160,8 +166,8 @@ Grid.rowconfigure(root, 0, weight=1)
 Grid.columnconfigure(root, 0, weight=1)
 
 
-#Create & Configure frame 
-frame=Frame(root)
+#Create & Configure frame
+frame = Frame(root)
 frame.grid(row=0, column=0)
 frame.pack(side=TOP)
 
@@ -176,11 +182,13 @@ for row_index in range(height):
     for col_index in range(width):
         btn_value = button_numbers[row_index][col_index]
         Grid.columnconfigure(frame, col_index, weight=1)
-        
+
         # Create button and add an anonymous function to call callback with it's coordinates
-        btn = Button(frame, image=img, height=45, width=45, compound=CENTER, state=None, bd=0)
+        btn = Button(frame, image=img, height=45, width=45,
+                     compound=CENTER, state=None, bd=0)
         # Configure the buttons call back to call with position and it's value
-        btn.configure(command=lambda i = row_index, j = col_index, value=btn_value: grid_callback(i, j, buttons, value))
+        btn.configure(command=lambda i=row_index, j=col_index,
+                      value=btn_value: grid_callback(i, j, buttons, value))
 
         btn.grid(row=row_index, column=col_index)
         buttons[row_index].append(btn)
@@ -195,10 +203,9 @@ menu_button = Button(menu_frame, text="Main Menu")
 menu_button.grid(row=0, column=1)
 
 quit_button = Button(menu_frame, text="Quit", command=lambda x=1: quit(x))
-quit_button.grid(row=0, column=2) 
+quit_button.grid(row=0, column=2)
 
-# Add Top Frame with 
+# Add Top Frame with
 
 
 root.mainloop()
-
