@@ -12,7 +12,7 @@ from tkinter import *
 # Import Classes
 #from GameController import GameController
 #from Board import Board
-#from View import View
+from View import View
 from MainMenu import MainMenu
 
 
@@ -35,7 +35,10 @@ class Minesweeper:
         self.root.mainloop()
         print(self.game_settings['mode'])
 
-        # self.main_menu = MainMenu(self.root, self.game_settings)
+        self.game_controller = []
+        self.game_board = []
+
+        self.view = View(self.game_board, self.game_controller, self.root, self.game_settings)
 
         self.root.mainloop()
 
