@@ -11,7 +11,8 @@ from MenuBar import MenuBar
 class View:
     #
     # ─── CALLBACK FOR LEFT CLICKING THE CANVAS ──────────────────────────────────────
-    def callback(self, event):
+    #
+    def callback_toggle(self, event):
         #
         # ─── DISABLE THE BOARD ON LOSS ───────────────────────────────────
         if self.board.get_state_loss():
@@ -31,18 +32,21 @@ class View:
             self.draw_mines()
         else: 
             self.draw();
+
+
+    def callback_cover(self, event):
+        if self.board.get_state_loss():
+            return NONE
         #
-            # ─── DIAGNOSTIC CODE TO PRINT TOGGLE GRID ON CLICK ───────────────
-            #
-            # toggles = self.board.get_state_toggles()
-            # for row in toggles:
-            #     for toggle in row:
-            #         if toggle:
-            #             print("1", end='\t')
-            #         else:
-            #             print("0", end='\t')
-            #     print("\n") 
-        #
+        # ─── MUTATE THE BOARD THROUGH THE CONTROLLER ─────────────────────
+        print("clicked at", event.x, event.y)
+        button_i = event.x // 46
+        button_j = event.y // 46
+        print("clicked button: ", button_i, button_j)
+        self.controller.cover(button_i, button_j)
+        if self.board.get_state_win():
+            print("YOU WIND IT")
+
 
 
     def __init__(self, game_board, game_controller, master, settings):
@@ -67,14 +71,16 @@ class View:
         self.frame = Frame(master, background="#F19C79", borderwidth=23)
         self.frame.pack()
 
-        self.square_up   = PhotoImage(file="assets/square_up.png")
-        self.square_down = PhotoImage(file="assets/square_down.png")
-        self.square_bomb = PhotoImage(file="assets/square_bomb.png")
+        self.square_up    = PhotoImage(file="assets/square_up.png")
+        self.square_down  = PhotoImage(file="assets/square_down.png")
+        self.square_bomb  = PhotoImage(file="assets/square_bomb.png")
+        self.square_cover = PhotoImage(file="assets/square_cover.png")
 
         #
         # ─── CREATE COMPONENTS ───────────────────────────────────────────
         self.canvas = Canvas(self.frame, width=canvas_dimension, height=canvas_dimension, background="#F19C79",)
-        self.canvas.bind("<Button-1>", self.callback)
+        self.canvas.bind("<Button-1>", self.callback_toggle)
+        self.canvas.bind("<Button-3>", self.callback_cover)
         self.canvas.pack(side="top")
         self.populate_buttons(self.game_size, self.game_size)
         self.menubar = MenuBar(self.frame, self)
@@ -93,11 +99,14 @@ class View:
         # ─── GET CURRENT STATE OF THE MODEL ──────────────────────────────
         toggles = self.board.get_state_toggles()
         numbers = self.board.get_state_button_numbers()
+        covers  = self.board.get_state_covers()
 
         # ─── REDRAW THE GAME BOARD ───────────────────────────────────────
         for i in range(self.game_size):
             for j in range(self.game_size):
-                if not toggles[i][j]:
+                if covers[i][j]:
+                    self.draw_tile(i,j, self.square_cover)
+                elif not toggles[i][j]:
                     self.draw_tile(i, j, self.square_up)
                 else:
                     if numbers[i][j] == 0:

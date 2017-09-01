@@ -14,7 +14,7 @@ class GameController:
         print("[Controller] Passing", i, j,)
         self.board.toggle_button(i, j)
 
-    def cover(self, i, j)
+    def cover(self, i, j):
         print("[Controller] Covering", i, j)
         self.board.cover_button(i,j)
 

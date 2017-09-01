@@ -134,7 +134,7 @@ class Board:
             self.game_over = True
 
     def cover_button(self, i, j):
-        if self.toggle[i][j]:
+        if self.toggles[i][j]:
             return
         if self.covers[i][j]:
             self.covers[i][j] = False
@@ -144,9 +144,9 @@ class Board:
         difference = 0
         for i in range(self.dimension):
             for j in range(self.dimension):
-                if covers[i][j] == True and self.button_numbers[i][j] != -1:
+                if self.covers[i][j] == True and self.button_numbers[i][j] != -1:
                     difference += 1
-                elif covers[i][j] == False and self.buttons[i][j] == -1:
+                elif self.covers[i][j] == False and self.button_numbers[i][j] == -1:
                     difference += 1
         if difference == 0:
             self.game_win = True
@@ -171,6 +171,9 @@ class Board:
     def get_state_mines(self):
         return self.mines
 
+    def get_state_covers(self):
+        return self.covers
+
     def get_state_win(self):
-        self.cover_match():
+        self.cover_match()
         return self.game_win
