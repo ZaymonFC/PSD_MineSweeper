@@ -17,6 +17,8 @@ class View:
         # ─── DISABLE THE BOARD ON LOSS ───────────────────────────────────
         if self.board.get_state_loss():
             return NONE
+        if self.board.get_state_win():
+            return NONE
         
         #
         # ─── MUTATE THE BOARD THROUGH THE CONTROLLER ─────────────────────
@@ -37,6 +39,8 @@ class View:
     def callback_cover(self, event):
         if self.board.get_state_loss():
             return NONE
+        if self.board.get_state_win():
+            return NONE
         #
         # ─── MUTATE THE BOARD THROUGH THE CONTROLLER ─────────────────────
         print("clicked at", event.x, event.y)
@@ -44,8 +48,19 @@ class View:
         button_j = event.y // 46
         print("clicked button: ", button_i, button_j)
         self.controller.cover(button_i, button_j)
+        
+        self.draw()
+
         if self.board.get_state_win():
-            print("YOU WIND IT")
+            print("HEY YOU WON!!")
+        # covers = self.board.get_state_covers()
+        # for row in covers:
+        #     for covers in row:
+        #         if covers:
+        #             print("1", end='\t')
+        #         else:
+        #             print("0", end='\t')
+        #     print("\n") 
 
 
 
@@ -104,15 +119,14 @@ class View:
         # ─── REDRAW THE GAME BOARD ───────────────────────────────────────
         for i in range(self.game_size):
             for j in range(self.game_size):
-                if covers[i][j]:
-                    self.draw_tile(i,j, self.square_cover)
+                if covers[i][j] == True:
+                    self.draw_tile(i, j, self.square_cover)
                 elif not toggles[i][j]:
                     self.draw_tile(i, j, self.square_up)
+                elif numbers[i][j] == 0:
+                    self.draw_tile(i, j, self.square_down)
                 else:
-                    if numbers[i][j] == 0:
-                        self.draw_tile(i, j, self.square_down)
-                    else:
-                        self.draw_tile(i, j, self.square_down, numbers[i][j])
+                    self.draw_tile(i, j, self.square_down, numbers[i][j])
                 
     #
     # ─── DRAW A SINGLE TILE ─────────────────────────────────────────────────────────
@@ -129,7 +143,6 @@ class View:
 
 
     def draw_mines(self):
-        print("Mines drawn lele")
         numbers = self.board.get_state_button_numbers()
     
         for i in range(self.game_size):

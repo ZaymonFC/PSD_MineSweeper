@@ -105,6 +105,8 @@ class Board:
         for neighbor in neighbors:
             n_i = neighbor[0]
             n_j = neighbor[1]
+            if self.covers[n_i][n_j]:
+                continue
             if self.button_numbers[n_i][n_j] == 0:
                 # Toggle the button
                 self.toggles[n_i][n_j] = True
@@ -124,7 +126,7 @@ class Board:
         if self.toggles[i][j]:
             return
         if self.covers[i][j]:
-            covers[i][j] = False
+            self.covers[i][j] = False
             return
         self.toggles[i][j] = True
         button_value = self.button_numbers[i][j]
@@ -134,11 +136,10 @@ class Board:
             self.game_over = True
 
     def cover_button(self, i, j):
-        if self.toggles[i][j]:
-            return
         if self.covers[i][j]:
             self.covers[i][j] = False
-            return
+        else:
+            self.covers[i][j] = True
     
     def cover_match(self):
         difference = 0
