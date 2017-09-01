@@ -21,7 +21,7 @@ class MainMenu:
         #
         self.square_btn_img = PhotoImage(file="assets/stdBtn.png")
         self.hex_btn_img    = PhotoImage(file="assets/hexBtn.png")
-        self.title_img       = PhotoImage(file="assets/title.png")
+        self.title_img      = PhotoImage(file="assets/title.png")
         #highscore_btn_img = PhotoImage(file="assets/highscoreBtn.png")
 
         #

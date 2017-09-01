@@ -2,24 +2,29 @@
 ##                               Board Class                                 ##
 ##                Contains Model Representation of a Game Board              ##
 #####   ---------------------------------------------------------------   #####
+import random as rand
+
 
 class Board:
-    def __init__(board_type, difficulty, dimension):
+    def __init__(self, board_type, difficulty, dimension):
         self.type = board_type
+        self.dimension = dimension
         self.graph = self.create_graph(type, dimension, dimension)
         self.cell_count = dimension * dimension
-        self.mine_count = difficulty * cell_count
-        self.mines = self.add_mines(dimension, dimension, mine_count)
-        self.button_numbers = self.calc_mines(self.graph, self.mines)
+        self.mine_count = difficulty * self.cell_count
+        self.mines = self.add_mines(dimension, dimension, self.mine_count)
+        self.button_numbers = self.calc_mines(self.graph, self.mines, dimension, dimension)
 
         self.toggles = [[False] * dimension for _ in range(dimension)]
+        self.covers = [[False] * dimension for _ in range(dimension)]
         self.game_over = False
+        self.game_win = False
 
 
 #
 # ─── SETUP FUNCTIONS ────────────────────────────────────────────────────────────
 #
-    def create_graph(self, type, width, height):
+    def create_graph(self, type, w, h):
         """ Function to create the graph for a board of n * n size """
         graph = {}
         for i in range(h):
@@ -69,6 +74,14 @@ class Board:
         return mines
 
 
+    def count_surrounds(self, graph, i, j, mines):
+        count = 0
+        for neighbor in graph[i,j]:
+            if mines[neighbor[0]][neighbor[1]] == 1:
+                count += 1
+        return count
+
+
     def calc_mines(self, graph, mines, w, h):
         button_numbers = [[0 for col in range(w)] for row in range(h)]
         for i in range (h):
@@ -78,16 +91,9 @@ class Board:
                     button_numbers[i][j] = -1
                 # Else calculate the buttons value
                 else:
-                    button_numbers[i][j] = count_surrounds(graph, i, j, mines)
+                    button_numbers[i][j] = self.count_surrounds(graph, i, j, mines)
         return button_numbers
 
-
-    def count_surrounds(self, graph, i, j, mines):
-        count = 0
-        for neighbor in graph[i,j]:
-            if mines[neighbor[0]][neighbor[1]] == 1:
-                count += 1
-        return count
     
     
 #
@@ -106,26 +112,44 @@ class Board:
                 grow_list.append([n_i,n_j])
                 # Set to English 'zero' to prevent endless recursion
                 self.button_numbers[n_i][n_j] = 'zero'
-            elif button_numbers[n_i][n_j] == 1:
+            elif self.button_numbers[n_i][n_j] == 1:
                 # Toggle the 'button'
                 self.toggles[n_i][n_j] = True
         if grow_list:
             for neighbor in grow_list:
-            recursive_reveal(neighbor[0], neighbor[1])
+                self.recursive_reveal(neighbor[0], neighbor[1])
 
 
     def toggle_button(self, i, j):
         if self.toggles[i][j]:
-            return 0
+            return
+        if self.covers[i][j]:
+            covers[i][j] = False
+            return
         self.toggles[i][j] = True
         button_value = self.button_numbers[i][j]
         if button_value == 0:
             self.recursive_reveal(i,j)
-            return 0
         elif button_value == -1:
             self.game_over = True
-            return -1
 
+    def cover_button(self, i, j):
+        if self.toggle[i][j]:
+            return
+        if self.covers[i][j]:
+            self.covers[i][j] = False
+            return
+    
+    def cover_match(self):
+        difference = 0
+        for i in range(self.dimension):
+            for j in range(self.dimension):
+                if covers[i][j] == True and self.button_numbers[i][j] != -1:
+                    difference += 1
+                elif covers[i][j] == False and self.buttons[i][j] == -1:
+                    difference += 1
+        if difference == 0:
+            self.game_win = True
 
 #
 # ─── GETTERS ────────────────────────────────────────────────────────────────────
@@ -140,3 +164,13 @@ class Board:
     
     def get_state_board_type(self):
         return self.board_type
+
+    def get_state_loss(self):
+        return self.game_over
+
+    def get_state_mines(self):
+        return self.mines
+
+    def get_state_win(self):
+        self.cover_match():
+        return self.game_win

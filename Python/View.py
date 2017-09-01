@@ -5,42 +5,66 @@
 
 #
 # ─── IMPORTS ────────────────────────────────────────────────────────────────────
-#
 from tkinter import *
-
+from MenuBar import MenuBar
 
 class View:
     #
     # ─── CALLBACK FOR LEFT CLICKING THE CANVAS ──────────────────────────────────────
-    #
     def callback(self, event):
+        #
+        # ─── DISABLE THE BOARD ON LOSS ───────────────────────────────────
+        if self.board.get_state_loss():
+            return NONE
+        
+        #
+        # ─── MUTATE THE BOARD THROUGH THE CONTROLLER ─────────────────────
         print("clicked at", event.x, event.y)
-        x = event.x
-        y = event.y
-        button_i = x // 46
-        button_j = y // 46
+        button_i = event.x // 46
+        button_j = event.y // 46
         print("clicked button: ", button_i, button_j)
+        self.controller.activate(button_i, button_j)
+
+        #
+        # ─── BEFORE REDRAW CHECK IF THE GAME IS OVER ─────────────────────
+        if self.board.get_state_loss():
+            self.draw_mines()
+        else: 
+            self.draw();
+        #
+            # ─── DIAGNOSTIC CODE TO PRINT TOGGLE GRID ON CLICK ───────────────
+            #
+            # toggles = self.board.get_state_toggles()
+            # for row in toggles:
+            #     for toggle in row:
+            #         if toggle:
+            #             print("1", end='\t')
+            #         else:
+            #             print("0", end='\t')
+            #     print("\n") 
+        #
+
 
     def __init__(self, game_board, game_controller, master, settings):
         #
         # ─── ASSIGN REFERENCE VARIABLES ──────────────────────────────────
-        #
         self.board = game_board
         self.controller = game_controller
 
         #
         # ─── EXTRACT SETTINGS ────────────────────────────────────────────
-        #
         self.height = settings['window_dimension']
         self.width = settings['window_dimension']
         self.game_size = settings['game_size']
+        self.tile_dimesion = settings['tile_dimension']
 
-        print 
+        #
+        # ─── CALCULATE CANVAS DIMENSIONS ─────────────────────────────────
+        canvas_dimension = self.tile_dimesion * self.game_size
             
         #
         # ─── DEFINE THE FRAME ────────────────────────────────────────────
-        #
-        self.frame = Frame(master, background="#F19C79", borderwidth=3, height=self.height, width=self.width)
+        self.frame = Frame(master, background="#F19C79", borderwidth=23)
         self.frame.pack()
 
         self.square_up   = PhotoImage(file="assets/square_up.png")
@@ -49,39 +73,67 @@ class View:
 
         #
         # ─── CREATE COMPONENTS ───────────────────────────────────────────
-        #
-        self.canvas = Canvas(self.frame, width=self.width, height=self.height, background="#F19C79")
+        self.canvas = Canvas(self.frame, width=canvas_dimension, height=canvas_dimension, background="#F19C79",)
         self.canvas.bind("<Button-1>", self.callback)
-        self.canvas.pack()
-        self.populate_buttons(12,12)
+        self.canvas.pack(side="top")
+        self.populate_buttons(self.game_size, self.game_size)
+        self.menubar = MenuBar(self.frame, self)
+        self.menubar.pack(side="bottom")
 
-
-
-        #
-        # ─── PACK AND PLACE ──────────────────────────────────────────────
-        #
-        # self.canvas.pack()
 
     #
     # ─── ADD GRID OF BUTTONS TO CANVAS BASED ON SPEC DIMENSION ──────────────────────
-    #
     def populate_buttons(self, width, height):
-        img_dimension = 46
         for i in range(width):
             for j in range(height):
-                self.canvas.create_image(i * img_dimension, j * img_dimension, anchor=NW, image=self.square_up);
+                self.draw_tile(i, j, self.square_up)
 
+    def draw(self):
+        #
+        # ─── GET CURRENT STATE OF THE MODEL ──────────────────────────────
+        toggles = self.board.get_state_toggles()
+        numbers = self.board.get_state_button_numbers()
+
+        # ─── REDRAW THE GAME BOARD ───────────────────────────────────────
+        for i in range(self.game_size):
+            for j in range(self.game_size):
+                if not toggles[i][j]:
+                    self.draw_tile(i, j, self.square_up)
+                else:
+                    if numbers[i][j] == 0:
+                        self.draw_tile(i, j, self.square_down)
+                    else:
+                        self.draw_tile(i, j, self.square_down, numbers[i][j])
+                
+    #
+    # ─── DRAW A SINGLE TILE ─────────────────────────────────────────────────────────
+    def draw_tile(self, i, j, image, text=0):
+        img_dimension = 46
+        pos_x = img_dimension * i
+        pos_y = img_dimension * j
+        self.canvas.create_image(pos_x, pos_y, anchor=NW, image=image);
+
+        if text != 0:
+            if self.board.get_state_button_numbers()[i][j] is 'zero':
+                 return
+            self.canvas.create_text(pos_x + 22.5, pos_y + 22.5, text=text)
+
+
+    def draw_mines(self):
+        print("Mines drawn lele")
+        numbers = self.board.get_state_button_numbers()
     
+        for i in range(self.game_size):
+            for j in range(self.game_size):
+                if numbers[i][j] == -1:
+                    self.draw_tile(i, j, self.square_bomb)
+
     #
-    # ─── LOAD IMAGES INTO DICTIONARY ──────────────────────────────────────────────
+    # ─── FUNCTION TO DESTROY ALL TKINTER COMPONENTS AND RETURN TO MENU ──────────────
     #
-    def load_images(self):
-        images = {}
-        images['square_up']   = PhotoImage(file="assets/square_up.png")
-        images['square_down'] = PhotoImage(file="assets/square_down.png")
-        images['square_bomb'] = PhotoImage(file="assets/square_bomb.png")
+    def cleanup(self):
+        self.canvas.destroy()
+        self.menubar.destroy()
+        self.frame.destroy()
+        self.frame.quit()
         
-        return images
-    
-
-
