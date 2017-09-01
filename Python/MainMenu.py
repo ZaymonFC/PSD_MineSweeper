@@ -49,7 +49,6 @@ class MainMenu:
                                 image=self.title_img,
                                 bg=self.config['bg_colour']
                                 )
-
         #
         # ─── PACK AND PLACE COMPONENTS ───────────────────────────────────
         #
@@ -60,8 +59,9 @@ class MainMenu:
         self.hex_button.place(bordermode=OUTSIDE, x=100, y=400)
         self.title_label.place(bordermode=OUTSIDE, x=60, y=80)
 
+
     #
-    # ─── EVENT LISTENS FOR CLICK DESTROYS COMPONENT AND RETURNS SETTINGS ────────────
+    # ─── EVENT LISTENER FOR CLICK DESTROYS COMPONENT AND RETURNS SETTINGS ───────
     #
     def return_settings(self, mode):
         self.clean_components()
@@ -71,7 +71,7 @@ class MainMenu:
     
 
     #
-    # ─── FUNCTION TO DESTROY ALL COMPONENTS [CLEAN UP] ──────────────────────────────
+    # ─── FUNCTION TO DESTROY ALL COMPONENTS [CLEAN UP] ──────────────────────────
     #
     def clean_components(self):
         self.square_button.destroy()

@@ -12,8 +12,6 @@ export default class MainMenu extends Phaser.State {
         this.load.image('stdBtn', '/assets/stdBtn.svg')
         this.load.image('hexBtn', '/assets/hexBtn.svg')
         this.load.image('highscoreBtn', '/assets/highscoreBtn.svg')
-        
-
     }
 
     create() {
