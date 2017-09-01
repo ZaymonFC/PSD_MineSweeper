@@ -10,6 +10,17 @@ from tkinter import *
 
 
 class View:
+    #
+    # ─── CALLBACK FOR LEFT CLICKING THE CANVAS ──────────────────────────────────────
+    #
+    def callback(self, event):
+        print("clicked at", event.x, event.y)
+        x = event.x
+        y = event.y
+        button_i = x // 46
+        button_j = y // 46
+        print("clicked button: ", button_i, button_j)
+
     def __init__(self, game_board, game_controller, master, settings):
         #
         # ─── ASSIGN REFERENCE VARIABLES ──────────────────────────────────
@@ -20,8 +31,9 @@ class View:
         #
         # ─── EXTRACT SETTINGS ────────────────────────────────────────────
         #
-        self.height = settings['height']
-        self.width = settings['width']
+        self.height = settings['window_dimension']
+        self.width = settings['window_dimension']
+        self.game_size = settings['game_size']
 
         print 
             
@@ -38,7 +50,8 @@ class View:
         #
         # ─── CREATE COMPONENTS ───────────────────────────────────────────
         #
-        self.canvas = Canvas(self.frame, width=720, height=720, background="#F19C79")
+        self.canvas = Canvas(self.frame, width=self.width, height=self.height, background="#F19C79")
+        self.canvas.bind("<Button-1>", self.callback)
         self.canvas.pack()
         self.populate_buttons(12,12)
 
@@ -69,7 +82,6 @@ class View:
         images['square_bomb'] = PhotoImage(file="assets/square_bomb.png")
         
         return images
-
     
 
 

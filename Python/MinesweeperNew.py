@@ -31,6 +31,7 @@ class Minesweeper:
         self.game_settings = {}
         self.game_settings['width'] = 8
         self.game_settings['height'] = 8
+        self.game_settings['window_dimension'] = 720
         self.main_menu = MainMenu(self.root, self.game_settings)
         self.root.mainloop()
         print(self.game_settings['mode'])
