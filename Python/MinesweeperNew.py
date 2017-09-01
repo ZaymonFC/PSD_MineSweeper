@@ -29,9 +29,12 @@ class Minesweeper:
         # ─── DISPLAY MAIN MENU AND POPULATE GAME SETTINGS ────────────────
         #
         self.game_settings = {}
+        self.game_settings['width'] = 8
+        self.game_settings['height'] = 8
         self.main_menu = MainMenu(self.root, self.game_settings)
         self.root.mainloop()
         print(self.game_settings['mode'])
+
         # self.main_menu = MainMenu(self.root, self.game_settings)
 
         self.root.mainloop()

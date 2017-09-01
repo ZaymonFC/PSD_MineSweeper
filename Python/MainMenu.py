@@ -13,7 +13,7 @@ class MainMenu:
         #
         # ─── DEFINE THE FRAME ────────────────────────────────────────────
         #
-        self.frame = Frame(master, background="#F19C79", borderwidth=3, height=720, width=720)
+        self.frame = Frame(master, background="#F19C79", borderwidth=10, height=720, width=720)
         self.frame.pack()
 
         #
@@ -34,7 +34,8 @@ class MainMenu:
                                 width=149,
                                 height=47,
                                 bg=self.config['bg_colour'],
-                                relief=FLAT
+                                relief=FLAT,
+                                borderwidth=0
                             )
 
         self.hex_button = Button(self.frame,
@@ -43,7 +44,8 @@ class MainMenu:
                                 width=149,
                                 height=47,
                                 bg=self.config['bg_colour'],
-                                relief=FLAT
+                                relief=FLAT,
+                                borderwidth=0
                             )
         self.title_label = Label(
                                 image=self.title_img,
@@ -56,8 +58,8 @@ class MainMenu:
         self.square_button.pack()
         self.hex_button.pack()
         self.title_label.pack()
-        self.square_button.place(bordermode=OUTSIDE, x=100, y=320)
-        self.hex_button.place(bordermode=OUTSIDE, x=100, y=400)
+        self.square_button.place(bordermode=OUTSIDE, x=280, y=300)
+        self.hex_button.place(bordermode=OUTSIDE, x=280, y=400)
         self.title_label.place(bordermode=OUTSIDE, x=60, y=80)
 
     #
