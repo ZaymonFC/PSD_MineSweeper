@@ -2,21 +2,10 @@
 <diagram program="umlet" version="14.2">
   <zoom_level>11</zoom_level>
   <element>
-    <id>UMLFrame</id>
-    <coordinates>
-      <x>1144</x>
-      <y>1166</y>
-      <w>506</w>
-      <h>517</h>
-    </coordinates>
-    <panel_attributes>Game</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>220</x>
-      <y>154</y>
+      <x>484</x>
+      <y>88</y>
       <w>110</w>
       <h>33</h>
     </coordinates>
@@ -26,19 +15,19 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
-      <y>176</y>
+      <x>517</x>
+      <y>110</y>
       <w>33</w>
-      <h>561</h>
+      <h>759</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;490.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;670.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>561</x>
-      <y>154</y>
+      <x>814</x>
+      <y>88</y>
       <w>110</w>
       <h>33</h>
     </coordinates>
@@ -48,19 +37,19 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>605</x>
-      <y>176</y>
+      <x>858</x>
+      <y>110</y>
       <w>33</w>
-      <h>561</h>
+      <h>759</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;490.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;670.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>396</x>
-      <y>154</y>
+      <x>649</x>
+      <y>88</y>
       <w>110</w>
       <h>33</h>
     </coordinates>
@@ -70,19 +59,19 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>176</y>
+      <x>693</x>
+      <y>110</y>
       <w>33</w>
-      <h>561</h>
+      <h>759</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;490.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;670.0</additional_attributes>
   </element>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>726</x>
-      <y>99</y>
+      <x>979</x>
+      <y>33</y>
       <w>66</w>
       <h>121</h>
     </coordinates>
@@ -92,19 +81,19 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>748</x>
-      <y>198</y>
+      <x>1001</x>
+      <y>132</y>
       <w>33</w>
-      <h>550</h>
+      <h>737</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;480.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;650.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>605</x>
-      <y>220</y>
+      <x>858</x>
+      <y>154</y>
       <w>176</w>
       <h>55</h>
     </coordinates>
@@ -116,21 +105,21 @@ lt=&lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>440</x>
-      <y>297</y>
+      <x>693</x>
+      <y>242</y>
       <w>198</w>
       <h>55</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-
 Pass co-ordinate
 to controller</panel_attributes>
-    <additional_attributes>10.0;30.0;160.0;20.0</additional_attributes>
+    <additional_attributes>10.0;30.0;160.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
-      <y>308</y>
+      <x>517</x>
+      <y>253</y>
       <w>209</w>
       <h>55</h>
     </coordinates>
@@ -142,8 +131,8 @@ toggle() or cover()</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
-      <y>352</y>
+      <x>517</x>
+      <y>297</y>
       <w>374</w>
       <h>44</h>
     </coordinates>
@@ -154,21 +143,21 @@ query game state</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
-      <y>374</y>
+      <x>517</x>
+      <y>330</y>
       <w>374</w>
-      <h>77</h>
+      <h>55</h>
     </coordinates>
     <panel_attributes>lt=..&gt;&gt;
 return:= state
 number_grid</panel_attributes>
-    <additional_attributes>10.0;10.0;320.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;320.0;30.0</additional_attributes>
   </element>
   <element>
     <id>UMLGeneric</id>
     <coordinates>
-      <x>605</x>
-      <y>418</y>
+      <x>858</x>
+      <y>352</y>
       <w>22</w>
       <h>55</h>
     </coordinates>
@@ -178,8 +167,8 @@ number_grid</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>616</x>
-      <y>418</y>
+      <x>869</x>
+      <y>352</y>
       <w>99</w>
       <h>66</h>
     </coordinates>
@@ -191,8 +180,8 @@ board</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>605</x>
-      <y>462</y>
+      <x>858</x>
+      <y>396</y>
       <w>176</w>
       <h>66</h>
     </coordinates>
@@ -205,8 +194,8 @@ user</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>231</x>
-      <y>209</y>
+      <x>484</x>
+      <y>143</y>
       <w>561</w>
       <h>319</h>
     </coordinates>
@@ -216,10 +205,10 @@ user</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>231</x>
-      <y>539</y>
+      <x>484</x>
+      <y>473</y>
       <w>561</w>
-      <h>154</h>
+      <h>374</h>
     </coordinates>
     <panel_attributes>Loop while game inactive</panel_attributes>
     <additional_attributes/>
@@ -227,8 +216,8 @@ user</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
-      <y>231</y>
+      <x>517</x>
+      <y>165</y>
       <w>374</w>
       <h>55</h>
     </coordinates>
@@ -240,8 +229,8 @@ query game state
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
-      <y>264</y>
+      <x>517</x>
+      <y>198</y>
       <w>374</w>
       <h>55</h>
     </coordinates>
@@ -253,19 +242,19 @@ return:= state (active game)</panel_attributes>
   <element>
     <id>UMLFrame</id>
     <coordinates>
-      <x>187</x>
-      <y>55</y>
-      <w>660</w>
-      <h>693</h>
+      <x>462</x>
+      <y>22</y>
+      <w>616</w>
+      <h>847</h>
     </coordinates>
-    <panel_attributes>interaction frame</panel_attributes>
+    <panel_attributes>Gameplay</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>605</x>
-      <y>550</y>
+      <x>858</x>
+      <y>484</y>
       <w>176</w>
       <h>55</h>
     </coordinates>
@@ -277,8 +266,8 @@ lt=&lt;-</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
-      <y>561</y>
+      <x>517</x>
+      <y>495</y>
       <w>374</w>
       <h>55</h>
     </coordinates>
@@ -290,14 +279,88 @@ query game state
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>264</x>
-      <y>572</y>
+      <x>517</x>
+      <y>506</y>
       <w>374</w>
       <h>110</h>
     </coordinates>
     <panel_attributes>lt=..&gt;&gt;
 
-return:= state (game over)</panel_attributes>
+return:= state (win/loss)</panel_attributes>
     <additional_attributes>10.0;10.0;320.0;80.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>495</x>
+      <y>594</y>
+      <w>539</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>alt
+[state == lose]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLFrame</id>
+    <coordinates>
+      <x>495</x>
+      <y>704</y>
+      <w>539</w>
+      <h>132</h>
+    </coordinates>
+    <panel_attributes>alt
+[state == win]</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>759</y>
+      <w>176</w>
+      <h>44</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+Alert User of Win</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLGeneric</id>
+    <coordinates>
+      <x>858</x>
+      <y>605</y>
+      <w>22</w>
+      <h>55</h>
+    </coordinates>
+    <panel_attributes/>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>869</x>
+      <y>605</y>
+      <w>99</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+draw()
+mines</panel_attributes>
+    <additional_attributes>10.0;40.0;30.0;40.0;30.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>858</x>
+      <y>649</y>
+      <w>176</w>
+      <h>66</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;-
+
+display to
+user</panel_attributes>
+    <additional_attributes>140.0;20.0;10.0;20.0</additional_attributes>
   </element>
 </diagram>
