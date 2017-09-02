@@ -1,3 +1,4 @@
+# coding=<utf-8>
 #####   ---------------------------------------------------------------   #####
 ##                               Board Class                                 ##
 ##                Contains Model Representation of a Game Board              ##

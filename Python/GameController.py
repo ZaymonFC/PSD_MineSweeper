@@ -1,5 +1,6 @@
+# coding=<utf-8>
 #####   ---------------------------------------------------------------   #####
-##                           Minesweeper Class                               ##
+##                          Controller Class                                 ##
 ##               Entire Game Implementation for Minesweeper                  ##
 #####   ---------------------------------------------------------------   #####
 
