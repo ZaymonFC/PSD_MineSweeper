@@ -53,15 +53,18 @@ class View:
 
         if self.board.get_state_win():
             print("HEY YOU WON!!")
-        # covers = self.board.get_state_covers()
-        # for row in covers:
-        #     for covers in row:
-        #         if covers:
-        #             print("1", end='\t')
-        #         else:
-        #             print("0", end='\t')
-        #     print("\n") 
+        #    # covers = self.board.get_state_covers()
+            # for row in covers:
+            #     for covers in row:
+            #         if covers:
+            #             print("1", end='\t')
+            #         else:
+            #             print("0", end='\t')
+            #     print("\n") 
 
+
+
+    # 
 
 
     def __init__(self, game_board, game_controller, master, settings):

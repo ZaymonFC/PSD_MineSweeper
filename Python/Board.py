@@ -158,11 +158,9 @@ class Board:
     def get_state_toggles(self):
         return self.toggles
 
-
     def get_state_button_numbers(self):
         return self.button_numbers
 
-    
     def get_state_board_type(self):
         return self.board_type
 

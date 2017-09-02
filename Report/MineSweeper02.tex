@@ -1,0 +1,145 @@
+\documentclass[12pt, a4]{report}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.8in]{geometry}
+\def\thesection{\arabic{section}}
+\setcounter{tocdepth}{4}
+
+%
+% ─── IMPORTS ────────────────────────────────────────────────────────────────────
+%
+\usepackage{graphicx}
+\graphicspath{ images/ }
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{color}
+\usepackage{csquotes}
+
+%
+% ─── TABLE CONFIGURATIONS ───────────────────────────────────────────────────────
+%
+\setlength{\arrayrulewidth}{0.5mm}
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{1.5}
+
+%
+% ─── STYLING AND CONFIGURATION FOR CODE LISTING ─────────────────────────────────
+%
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.5,0.92}
+\definecolor{bittersweet}{rgb}{1.0, 0.44, 0.37}
+\definecolor{cosmiclatte}{rgb}{0.93, 0.93, 0.93}
+\definecolor{eggshell}{rgb}{0.94, 0.94, 0.9}
+\definecolor{fandango}{rgb}{0.71, 0.2, 0.54}
+\lstdefinestyle{mystyle}{
+	backgroundcolor=\color{cosmiclatte},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{fandango}\small,
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	breakatwhitespace=false,        
+	breaklines=true,               
+	captionpos=b,                    
+	keepspaces=true,  
+	numbers=left,                    
+	numbersep=5pt,                  
+	showspaces=false,                
+	showstringspaces=false,
+	showtabs=false,                  
+	tabsize=2
+}
+\lstset{style=mystyle}
+
+%
+% ─── COVERPAGE ──────────────────────────────────────────────────────────────────
+%
+\title{2810, Principles of Software Engineering Milestone 02}
+\author{Zaymon Foulds-Cook, s5017391}%\thanks{}}
+\date{\today}
+\begin{document}
+\begin{titlepage}
+	\maketitle
+\end{titlepage}
+
+\tableofcontents
+\pagebreak
+
+%
+% ─── START OF REPORT ────────────────────────────────────────────────────────────
+%
+\section{Software Technologies Assignment 1}
+\subsection{Requirements}
+\par
+\begin{itemize}
+	\item Create system models for structure and behaviour of software products.
+	\item Use a design paradigm to design a simple software system
+	\item Select appropriate software architecture
+	
+\end{itemize}
+
+\subsection{Product Use Cases}
+\par 
+
+\subsection{Summary of Software Architecture}
+\par 
+
+\subsection{Summary of Design}
+\par 
+
+\subsection{Discussion of Sophistication Regarding Persistent Data Management}
+\par 
+
+\subsection{Software Testing | Testing Plan | Feasibility}
+\par 
+
+\subsection{Version Control}
+
+
+
+	
+	
+	% \textbf{Generate Solutions Pseudo-code}
+	
+
+	% 	\begin{figure}[h]
+	% 		\lstinputlisting[language=Python, firstline=2, lastline=4]{pseudo.txt}
+	% 		\caption{Psuedo-code for the build algorithm}
+	% 	\end{figure}
+	% 	\begin{figure}[!h]
+	% 		\lstinputlisting[language=Python, firstline=7, lastline=12]{pseudo.txt}
+	% 		\caption{Psuedo-code for the build basic algorithm}
+	% 	\end{figure}
+	% 	\begin{figure}[!h]
+	% 		\lstinputlisting[language=Python, firstline=15, lastline=32]{pseudo.txt}
+	% 		\caption{Psuedo-code for the find $($recursive$)$ algorithm}
+	% 	\end{figure}
+	% 	\begin{figure}[!h]
+	% 		\lstinputlisting[language=Python, firstline=35, lastline=52]{pseudo.txt}
+	% 		\caption{Psuedo-code for the short path $($breadth-first search$)$ algorithm}
+	% 	\end{figure}
+
+	% \newpage 
+ 
+	\subsection{Configuration Management and Version Control}
+		\par 
+		The development of this program required the use of version control software to evenly distribute tasks, as well as monitor the changes through source history. GitHub was created as an online hosting solution for git repositories. GitHub was used throughout this project to aid in collaboration between group members. GitHub was useful as it allowed group members to track changes and resolve any merge conflicts in a meaningful and lossless manner. Version control was used to ensure each developer could work on tasks individually. git records a log of past commits pushed to the repository which allows for backtracking of file versions.
+		
+		\subsubsection{Version Control History / Log}
+		\begin{tabular}{ | p{2cm} | p{13cm} | }
+			\hline
+				User & Activity \\
+			\hline
+			
+			ZaymonFC & Initial Commit \\ 
+			\hline
+			
+		\end{tabular}
+		
+		\par\vspace{1cm}\small Note: Repository is private to prevent plagiarism. \textbar{} This log was created by using the command \begin{lstlisting} 
+		git log --pretty=format:`%h;%an;%s' > ./log.csv\end{lstlisting}
+	
+	
+	
+\end{document}
