@@ -58,7 +58,7 @@
 %
 % ─── COVERPAGE ──────────────────────────────────────────────────────────────────
 %
-\title{2810, Principles of Software Engineering Milestone 02}
+\title{2805, Principles of Software Engineering Milestone 02}
 \author{Zaymon Foulds-Cook, s5017391}%\thanks{}}
 \date{\today}
 \begin{document}
@@ -72,7 +72,7 @@
 %
 % ─── START OF REPORT ────────────────────────────────────────────────────────────
 %
-\section{Software Technologies Assignment 1}
+\section{Principles of Software Engineering Milestone 02}
 \subsection{Requirements}
 \par Throughout this software project various software requirements have been identified. The following list itemizes each requirement and discusses the current completion status of each item.
 \begin{itemize}
@@ -84,7 +84,7 @@
 	\par \textcolor{codegreen}{Implemented - ongoing \textbar{} } The model view controller architecture was chosen for this project and has been fully implemented. The software systems adheres strictly to MVC for interactions, data flow and structure. 
 
 	\item Make use of appropriate design patterns
-	\par \textcolor{codegreen}{Implemented - ongoing \textbar{} } Various software design patterns have been used throughout the project such as the `façade pattern' and the `model view controller pattern'. More patterns such as singleton will be implemented in the final software system.
+	\par \textcolor{codegreen}{Implemented - ongoing \textbar{} } Various software design patterns have been used throughout the project such as the `façade software pattern' and the `model view controller pattern'. More patterns such as singleton will be implemented in the final software system.
 
 	\item Create user interface software using event driven or call-back based designs
 	\par \textcolor{codegreen}{Implemented - ongoing \textbar{} } The software system has a user interface which is driven by call-back based interactions with the game board.
@@ -106,7 +106,15 @@
 \end{itemize}
 
 \subsection{Product Use Cases}
-\par 
+\par Various use cases were identified in the first milestone. Including:
+\begin{itemize}
+	\item Select Game Mode
+	\item Uncover a tile
+	\item Cover a tile
+	\item Win the game
+	\item Lose the game
+\end{itemize}
+Most of these use cases have been fully implemented apart from the ability to choose game modes. This use case will be completed with the final project submission as it requires the view and model classes to be extended in order to support the additional game modes. The extension of these classes is covered in section 1.5 `Summary of Design'
 
 \subsection{Summary of Software Architecture}
 \par Software architecture is a set of guidelines principles models and processes. The software architecture being used in the minesweeper software system is based around the model view controller software pattern. The Minesweeper software system has been written and implemented purely in python and uses the tkinter user interface library which comes bundled with a typical install of python. No integrated development environments have been used throughout the development process as the developer has opted to simply use the Visual Studio code text editor. 
@@ -128,36 +136,158 @@ As the Milestone one submission had a high level of coupling it also had a low l
 An effort has been made to improve the response time of the minesweeper application. A big positive impact was only re-rendering the game view after a complete change in the game-state. An issue that affected earlier versions of the Minesweeper game was the cascading reveal being progressively rendered across the view as it relied on button components. Since switching the game to a canvas based render system the response time has been vastly improved to the point where rendering stat changes is imperceptible to the user.
 
 \subsubsection{Facilitating Maintenance}
-Since the start of the project the maintainability of the software system has increased dramatically. Increases and readability and decreases and coupling along with effective commenting and increases in understandability. Functions and variable names have been refactored to be more explicit in conveying the purpose and functionality of the code. By abstracting common tasks into functions there is reduced redundancy within the source code. Another increase to the maintainability of the software system is following proper naming conventions for variables and classes.
+Since the start of the project the maintainability of the software system has increased dramatically. Increases and readability and decreases and coupling along with effective commenting and increases in understandability. Functions and variable names have been refactored to be more explicit in conveying the purpose and functionality of the code. By abstracting common tasks into functions there is reduced redundancy within the source code. Another increase to the maintainability of the software system is following proper naming conventions for variables and classes. This is evident in figure ~\ref{ClassDiagram}.
 
 \subsubsection{Increasing Modularity}
 The increase in modularity can be directly attributed to restructuring the software system to follow the model view controller software pattern. During the restructure common code and functions we're grouped together in various models based on similarities in functionality. An example of this would be the view only containing functions related to rendering the graphical user interface and handling events. Functions such as draw\_tile() and populate\_buttons() are logically related and belong in the same class. It is evident from the object model that each module in the software system contains function specific to that module. The increase in modularity strongly reinforces a good separation of concerns as each core module does not depend on the existence and state of other modules. An increase in modularity is desirable as it allows modules to be replaced or implementations to be changed without cascading changes being required throughout the software system.
 
-\subsection{Summary of Design, Diagrams}
+\newpage{1}
+%
+% ─── DESIGN DIAGRAMS AND JUSTIFICATION ──────────────────────────────────────────
+%
+\subsection{Summary of Design, Diagrams and Code Justification}
+%
+% ─── CLASS DIAGRAM ──────────────────────────────────────────────────────────────
+%
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.5]{ClassDiagram}
-	\caption{UML diagram for the Python implementation of Ladder-gram}
+	\caption{UML class diagram for the Minesweeper software system}
+	\label{ClassDiagram}
 \end{figure}
-\par 
+\par Figure \ref{ClassDiagram} shows the overall structure of the software system including the methods and fields of each class, as well as the relationships between classes. It is evident in the class diagram that MVC principles are strictly adhered to as all code is separated into logically related sections. All code and information about the `model' or `game board' is stored within the board class. All user interface elements of the game are stored within the `view' class. As class diagrams are a structural model the related code has been included from various files in fragments below.
 
+\begin{figure}[!h]
+	\label{code:main}
+	\begin{lstlisting}[language=python]
+		self.game_board = Board(
+			'square',
+			self.game_settings['game_difficulty'],
+			self.game_settings['game_size']
+		);
+
+		self.game_controller = GameController(self.game_board)
+
+		self.view = View(self.game_board, self.game_controller, self.root, self.game_settings)
+	\end{lstlisting}
+	\caption{Extract from MineSweeper class}
+\end{figure}
+
+\par In the main class of the program `MineSweeper' an object of the game board is created. Then an object of the controller is created which has a reference to the game board. Finally an object of the view is instantiated with a reference to both the model `board' and the controller `Controller'. This is evident in figure 2.
+\newline
+\par It is observable in figure \ref{ClassDiagram} that the controller acts as a thin proxy or façade software pattern for the board class, abstracting the actual implementation from the view. In the code listing figure \ref{code:controller} it shows that the controller simply stores the reference to the model of the game as a member variable. The controller class also contains two small methods for performing different actions on the board model.
+\begin{figure}[!h]
+	\label{code:controller}
+	\begin{lstlisting}[language=python]
+		class GameController:
+			def __init__(self, board):
+				self.board = board
+			
+			def activate(self, i, j):
+				print("[Controller] Passing", i, j,)
+				self.board.toggle_button(i, j)
+		
+			def cover(self, i, j):
+				print("[Controller] Covering", i, j)
+				self.board.cover_button(i,j)
+	\end{lstlisting}
+	\caption{Extract from GameController class}
+\end{figure}
+\newline
+\par The view object takes a reference to both the model and the controller as parameters and stores them as member variables. This allows the view to fetch the state of the board when drawing and to mutate the board through the controller when handling events. This is evident in the extract of the view class shown in figure 4.
+\begin{figure}[!h]
+	\label{view}
+	\begin{lstlisting}[language=python]
+		def __init__(self, game_board, game_controller, master, settings):
+        	self.board = game_board
+        	self.controller = game_controller
+	\end{lstlisting}
+	\caption{Extract from View class}
+\end{figure}
+
+\newpage
+%
+% ─── SEQUENCE DIAGRAM ───────────────────────────────────────────────────────────
+%
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.7]{SequenceDiagram}
-	\caption{UML diagram for the Python implementation of Ladder-gram}
+	\caption{Sequence diagram for gameplay}
 \end{figure}
+Figure 5 is a sequence diagram which demonstrates how objects operate and interact with each other. Figure 5 demonstrates the interactions in the system during gameplay of minesweeper. It shows the user interacting with the user interface, the view calling the controller to mutate data and the view querying the state of the model after the model's state has changed. Figure 6 is an extract from the view class where the event handler passing information to the controller.
+\begin{figure}[!h]
+	\label{view}
+	\begin{lstlisting}[language=python]
+		def callback_toggle(self, event):
+			#
+			# --- DISABLE THE BOARD ON LOSS -----------------------------------
+			if self.board.get_state_loss():
+				return NONE
+			if self.board.get_state_win():
+				return NONE
+			#
+			# --- MUTATE THE BOARD THROUGH THE CONTROLLER ---------------------
+			print("clicked at", event.x, event.y)
+			button_i = event.x // 46
+			button_j = event.y // 46
+			print("clicked button: ", button_i, button_j)
+			self.controller.activate(button_i, button_j)
+			#
+			# --- BEFORE REDRAW CHECK IF THE GAME IS OVER ---------------------
+			if self.board.get_state_loss():
+				self.draw_mines()
+			else: 
+				self.draw();
+
+	\end{lstlisting}
+	\caption{Extract from View class}
+\end{figure}
+
+\newpage
+%
+% ─── ACTIVITY DIAGRAM ───────────────────────────────────────────────────────────
+%
 \begin{figure}[!h]
 	\centering
-	\includegraphics[scale=0.5]{ActivityDiagram}
-	\caption{UML diagram for the Python implementation of Ladder-gram}
+	\includegraphics[scale=0.4]{ActivityDiagram}
+	\caption{Activity diagram for MineSweeper}
 \end{figure}
+\par Figure 7 is an activity diagram and represents the program flow from one activity in the software system to another. Figure 7 visually represents the stages and decisions made when creating a new game. This activity diagram ends with the game being created and explains the storing of game settings and selection of game mode and difficulty. The following code extract in figure 8 shows the MainMenu object storing settings as key value pairs in a dictionary and then self closing. Figure 9 is code that shows how the settings are extracted to create a new board object.
+\begin{figure}[!h]
+	\label{view}
+	\begin{lstlisting}[language=python]
+		def return_settings(self, mode):
+			self.clean_components()
+			self.settings['mode'] = mode
+			self.frame.destroy()
+			self.frame.quit()
+\end{lstlisting}
+	\caption{Extract from MainMenu class}
+\end{figure}
+\begin{figure}[!h]
+	\label{view}
+	\begin{lstlisting}[language=python]
+		self.game_board = Board(
+			'square',
+			self.game_settings['game_difficulty'],
+			self.game_settings['game_size']
+		);
+\end{lstlisting}
+	\caption{Extract from MineSweeper class}
+\end{figure}
+
+%
+% ─── COLLABORATION DIAGRAM ──────────────────────────────────────────────────────
+%
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.6]{CollaborationDiagram}
-	\caption{UML diagram for the Python implementation of Ladder-gram}
+	\caption{Collaboration diagram for MineSweeper}
 \end{figure}
+\par Figure 10 is a collaboration diagram which illustrates relationships among objects. Figure 10 shows the object relationships when creating a new game. See figure 2 and figure 9.
 
 
+\newpage
 \subsection{Discussion of Sophistication Regarding Persistent Data Management, Access Control and User Interface}
 \subsubsection{Persistent Data Management}
 In the Minesweeper software system there is no persistent data stored in between games at this point in the game's development. Depending on your timeline there may be a need for a persistent data service in order to store user high scores. High scores are not a critical functional requirement and of the implementation of this data store is dependent on the workflow and time management of the developer.
@@ -168,53 +298,109 @@ As there are no access restricted sections of the game and the software system c
 \subsubsection{User Interface}
 The user interface for the software system of Minesweeper is quite sophisticated. It is built on top of the python tkinter library to create frames and components. The various sections of the user interface used in this application have been split into modules which subclass the tkinter frame object. This allows different UI components to be laid out in various configurations and increases maintainability as each component is limited in scope and functionality. This also enhances the re-usability of the code as models can be re-purposed in different situations. The user interface draws the tiles by rendering images onto a tkinter canvas object. This allows the game board to be very responsive and will make it easier to implement different views based on different configurations of the game by only changing a small subset of the code.
 
-\subsection{Software Testing | Testing Plan | Feasibility}
+\newpage
+\subsection{Software Testing \textbar{} Testing Plan \textbar{} Feasibility}
 \par 
 
+
+\begin{table}[!h]
+\centering
+\caption{Tests}
+\label{my-label}
+\begin{tabular}{lll}
+Test Number & Test                                                          & Results     \\
+1           & Selecting game mode returns correct value                     & \textcolor{codegreen}{As Expected} \\
+2           & Specified mine density is represented on the board            & \textcolor{codegreen}{As Expected} \\
+3           & Covers are not included in cascading reveal                   & \textcolor{codegreen}{As Expected} \\
+4           & Cells that are already toggled cannot be covered              & \textcolor{codegreen}{As Expected} \\
+5           & User cannot interact with the board after win                 & \textcolor{codegreen}{As Expected} \\
+6           & user cannot interact with the board after game over           & \textcolor{codegreen}{As Expected} \\
+7           & Recursive reveal also toggles a layer of 1's                  & \textcolor{codegreen}{As Expected} \\
+8           & Mouse position is correctly converted to cell coordinates     & \textcolor{codegreen}{As Expected} \\
+9           & Cell co-ordinates are passed in the right order to controller & \textcolor{codegreen}{As Expected} \\
+10          & Game window resizes to fit the size of the game               & \textcolor{codegreen}{As Expected} \\
+11          & Game window cannot be resized manually                        & \textcolor{codegreen}{As Expected} \\
+12          & Quit button gracefully exits                                  & \textcolor{codegreen}{As Expected} \\
+13          & Main menu button cleans the view and returns to main menu     & \textcolor{codegreen}{As Expected} \\
+14          & Winning requires correct covers                               & \textcolor{codegreen}{As Expected} \\
+15          & Game loses when clicking a mine                               & \textcolor{codegreen}{As Expected} \\
+16          & Game is responsive up to 25n dimension                        & \textcolor{codegreen}{As Expected}
+\end{tabular}
+\end{table}
 
 \subsection{Version Control}
-\par 
+\par The version control used in developing this software system was Git. And the source repository was hosted on the website GitHub.com. This allowed for the generation of graphs as well as logs of commits and other metrics. By using version control the project has been able to accurately track the source code as well as providing valuable versioning services used when trying to determine when a bug was introduced into the source. As the developers work across multiple devices source control has been a valuable tool in keeping multiple local copies of the repository synchronized and up-to-date across multiple computers.
 
+		% \subsubsection{Version Control History / Log}
+\begin{table}[!h]
+\centering
+
+\begin{tabular}{llp{9cm}}
+Time				  & Author   & Comment \\ \hline
+Sun Sep 3 14:56 2017  & ZaymonFC & Added all diagrams \\
+Sun Sep 3 00:19 2017  & ZaymonFC & Added Histogram and Activity Diagram \\
+Sat Sep 2 23:26 2017  & ZaymonFC & Added sequence diagram \\
+Sat Sep 2 22:40 2017  & ZaymonFC & Added class diagram \\
+Sat Sep 2 21:26 2017  & ZaymonFC & Added 5 sections to report \\
+Sat Sep 2 18:29 2017  & ZaymonFC & Added encoding for epydoc2 \\
+Sat Sep 2 18:27 2017  & ZaymonFC & Added encoding for epydoc \\
+Sat Sep 2 17:00 2017  & ZaymonFC & Added Report Dir \\
+Fri Sep 1 23:17 2017  & ZaymonFC & Added Covers \\
+Fri Sep 1 22:59 2017  & ZaymonFC & Implementing covers \\
+Fri Sep 1 22:42 2017  & ZaymonFC & Implemented MVC and used canvas to draw board \\
+Fri Sep 1 18:49 2017  & ZaymonFC & Merge branch `master' of https://github.com/ZaymonFC/PSD\_MineSweeper \\
+Fri Sep 1 18:49 2017  & ZaymonFC & PreMerge \\
+Fri Sep 1 18:02 2017  & ZaymonFC & Added click position event hadler for game canvas \\
+Fri Sep 1 16:37 2017  & ZaymonFC & Added function to render grid of buttons to canvas \\
+Fri Sep 1 15:43 2017  & ZaymonFC & Added view \\
+Wed Aug 30 22:36 2017 & ZaymonFC & Added title lable and finished main menu functionality \\
+Wed Aug 30 21:25 2017 & ZaymonFC & Added button assets for main menu and worked on GUI components \\
+Wed Aug 30 20:27 2017 & ZaymonFC & Added skeleton for MVC \\
+Wed Aug 30 19:09 2017 & ZaymonFC & Started Game Restructure \\
+Mon Jul 31 20:07 2017 & ZaymonFC & Modified recursive reveal to show extra layer of tiles \\
+Fri Jul 28 23:45 2017 & ZaymonFC & Fixed button tile images to display actual tile png' 
+\end{tabular}
+\end{table}
+
+\begin{table}[!h]
+\centering	
+\begin{tabular}{ll p{9cm}}
+Fri Jul 28 20:02 2017 & ZaymonFC & Added Class Diagram Data \\
+Fri Jul 28 19:59 2017 & ZaymonFC & Added Class Diagram \\
+Fri Jul 28 19:31 2017 & ZaymonFC & MileStone 01 Achieved \\
+Fri Jul 28 17:08 2017 & ZaymonFC & Added recursive reveal and reveal mine end conditions \\
+Fri Jul 28 16:34 2017 & ZaymonFC & Added images for python implementation and added event callbacks to the buttons \\
+Thu Jul 27 23:45 2017 & ZaymonFC & Added grid of buttons with colouring to test generating functions \\
+Thu Jul 27 23:25 2017 & ZaymonFC & Added methods to the python variant to create the graph, add the mines and generate the button numbers \\
+Thu Jul 27 22:39 2017 & ZaymonFC & Modified Tiles,  Created a python attempt at back end representation \\
+Thu Jul 27 20:57 2017 & ZaymonFC & Merge branch `master' of https://github.com/ZaymonFC/PSD\_MineSweeper \\
+Thu Jul 27 20:57 2017 & ZaymonFC & MineSweeperJS Fixed \\
+Wed Jul 26 12:32 2017 & ZaymonFC & Worked on creating the graph for neighbors \\
+Tue Jul 25 15:28 2017 & ZaymonFC & Added style and untracked output files from main repo \\
+Tue Jul 25 15:14 2017 & ZaymonFC & Added square tile spritesheet and frameboarder \\
+Tue Jul 25 14:46 2017 & ZaymonFC & Fixed index title,  added a class for game tile which extends the phaser button object \\
+Tue Jul 25 00:11 2017 & ZaymonFC & Added assets for buttons,  loaded them into the mainmenu game state and then created event handlers to switch state to the GameState class\\
+Mon Jul 24 23:38 2017 & ZaymonFC & Added Mainmenu state,   fixed state handling,  implemented a global constant file for game configurations \\
+Mon Jul 24 23:00 2017 & ZaymonFC & Setup webpack and refactored starting code. Added MineSweeper class to act as a state manager \\
+Mon Jul 24 20:10 2017 & ZaymonFC & Configured node modules and installed webpack \\
+Mon Jul 24 20:00 2017 & ZaymonFC & Created class to represent tile and created basic constructor \\
+Sun Jul 23 22:36 2017 & ZaymonFC & Understood working with phaserjs sprites and implemented a `game' GameState \\
+Sun Jul 23 14:02 2017 & ZaymonFC & Initial Commit
+\end{tabular}
+\end{table}
+
+\newpage
+\clearpage
+\subsubsection{Histogram of Effort}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=1]{Histogram}
+	\caption{Collaboration diagram for MineSweeper}
+\end{figure}
+
+\par It is evident from figure 11 that the effort distribution is skewed towards the submission of each milestone. This is due to the developers prioritizing time based on assessment due dates.
 
 	
-	
-	% \textbf{Generate Solutions Pseudo-code}
-	
-
-	% 	\begin{figure}[h]
-	% 		\lstinputlisting[language=Python, firstline=2, lastline=4]{pseudo.txt}
-	% 		\caption{Psuedo-code for the build algorithm}
-	% 	\end{figure}
-	% 	\begin{figure}[!h]
-	% 		\lstinputlisting[language=Python, firstline=7, lastline=12]{pseudo.txt}
-	% 		\caption{Psuedo-code for the build basic algorithm}
-	% 	\end{figure}
-	% 	\begin{figure}[!h]
-	% 		\lstinputlisting[language=Python, firstline=15, lastline=32]{pseudo.txt}
-	% 		\caption{Psuedo-code for the find $($recursive$)$ algorithm}
-	% 	\end{figure}
-	% 	\begin{figure}[!h]
-	% 		\lstinputlisting[language=Python, firstline=35, lastline=52]{pseudo.txt}
-	% 		\caption{Psuedo-code for the short path $($breadth-first search$)$ algorithm}
-	% 	\end{figure}
-
-	% \newpage 
- 
-	% \subsection{Configuration Management and Version Control}
-	% 	\par 
-	% 	The development of this program required the use of version control software to evenly distribute tasks, as well as monitor the changes through source history. GitHub was created as an online hosting solution for git repositories. GitHub was used throughout this project to aid in collaboration between group members. GitHub was useful as it allowed group members to track changes and resolve any merge conflicts in a meaningful and lossless manner. Version control was used to ensure each developer could work on tasks individually. git records a log of past commits pushed to the repository which allows for backtracking of file versions.
-		
-	% 	\subsubsection{Version Control History / Log}
-	% 	\begin{tabular}{ | p{2cm} | p{13cm} | }
-	% 		\hline
-	% 			User & Activity \\
-	% 		\hline
-			
-	% 		ZaymonFC & Initial Commit \\ 
-	% 		\hline
-			
-	% 	\end{tabular}
-		
 	% 	\par\vspace{1cm}\small Note: Repository is private to prevent plagiarism. \textbar{} This log was created by using the command \begin{lstlisting} 
 	% 	git log --pretty=format:`%h;%an;%s' > ./log.csv\end{lstlisting}
 	

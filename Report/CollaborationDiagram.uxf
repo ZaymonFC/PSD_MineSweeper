@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>10</zoom_level>
+  <zoom_level>9</zoom_level>
   <element>
     <id>UMLActor</id>
     <coordinates>
-      <x>310</x>
-      <y>330</y>
-      <w>60</w>
-      <h>110</h>
+      <x>270</x>
+      <y>315</y>
+      <w>54</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>Player</panel_attributes>
     <additional_attributes/>
@@ -15,10 +15,10 @@
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>360</x>
-      <y>340</y>
-      <w>190</w>
-      <h>40</h>
+      <x>315</x>
+      <y>324</y>
+      <w>171</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=-
 self.root.mainloop()</panel_attributes>
@@ -27,10 +27,10 @@ self.root.mainloop()</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>530</x>
-      <y>350</y>
-      <w>100</w>
-      <h>40</h>
+      <x>468</x>
+      <y>333</y>
+      <w>90</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>: Present Main
 Menu</panel_attributes>
@@ -39,10 +39,10 @@ Menu</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>760</x>
-      <y>430</y>
-      <w>100</w>
-      <h>40</h>
+      <x>675</x>
+      <y>405</y>
+      <w>90</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>: View</panel_attributes>
     <additional_attributes/>
@@ -50,10 +50,10 @@ Menu</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>760</x>
-      <y>280</y>
-      <w>100</w>
-      <h>40</h>
+      <x>675</x>
+      <y>270</y>
+      <w>90</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>: Board</panel_attributes>
     <additional_attributes/>
@@ -61,10 +61,10 @@ Menu</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>760</x>
-      <y>350</y>
-      <w>100</w>
-      <h>40</h>
+      <x>675</x>
+      <y>333</y>
+      <w>90</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>: Controller</panel_attributes>
     <additional_attributes/>
@@ -72,10 +72,10 @@ Menu</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>590</x>
-      <y>290</y>
-      <w>190</w>
-      <h>80</h>
+      <x>522</x>
+      <y>279</y>
+      <w>171</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=-
 1.1: Board() &gt;</panel_attributes>
@@ -84,10 +84,10 @@ Menu</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>620</x>
-      <y>350</y>
-      <w>160</w>
-      <h>40</h>
+      <x>549</x>
+      <y>333</y>
+      <w>144</w>
+      <h>36</h>
     </coordinates>
     <panel_attributes>lt=-
 1.2: Controller() &gt;</panel_attributes>
@@ -96,10 +96,10 @@ Menu</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>590</x>
-      <y>380</y>
-      <w>190</w>
-      <h>90</h>
+      <x>522</x>
+      <y>360</y>
+      <w>171</w>
+      <h>81</h>
     </coordinates>
     <panel_attributes>lt=-
 1.3: View() &gt;</panel_attributes>
@@ -108,10 +108,10 @@ Menu</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>440</y>
-      <w>190</w>
-      <h>120</h>
+      <x>711</x>
+      <y>414</y>
+      <w>171</w>
+      <h>108</h>
     </coordinates>
     <panel_attributes>lt=-
 2.1: Event() &gt;
@@ -121,10 +121,10 @@ draw() &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>380</y>
-      <w>110</w>
-      <h>70</h>
+      <x>711</x>
+      <y>360</y>
+      <w>99</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=-
 &lt; 2.2: Input ()
@@ -134,10 +134,10 @@ draw() &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>800</x>
-      <y>310</y>
-      <w>160</w>
-      <h>60</h>
+      <x>711</x>
+      <y>297</y>
+      <w>144</w>
+      <h>54</h>
     </coordinates>
     <panel_attributes>lt=-
 &lt; 2.3: MutateBoard ()
@@ -147,10 +147,10 @@ draw() &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>850</x>
-      <y>290</y>
-      <w>290</w>
-      <h>170</h>
+      <x>756</x>
+      <y>279</y>
+      <w>261</w>
+      <h>153</h>
     </coordinates>
     <panel_attributes>lt=-
 2.3: Get State () &gt;
@@ -160,10 +160,10 @@ draw() &gt;</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>570</x>
-      <y>380</y>
-      <w>250</w>
-      <h>180</h>
+      <x>504</x>
+      <y>360</y>
+      <w>225</w>
+      <h>162</h>
     </coordinates>
     <panel_attributes>lt=-
 &lt; 3.1 cleanup()</panel_attributes>
