@@ -8,7 +8,7 @@
 % ─── IMPORTS ────────────────────────────────────────────────────────────────────
 %
 \usepackage{graphicx}
-\graphicspath{ images/ }
+\graphicspath{ {images/} }
 \usepackage{listings}
 \usepackage{verbatim}
 \usepackage{color}
@@ -133,6 +133,31 @@ Since the start of the project the maintainability of the software system has in
 \subsubsection{Increasing Modularity}
 The increase in modularity can be directly attributed to restructuring the software system to follow the model view controller software pattern. During the restructure common code and functions we're grouped together in various models based on similarities in functionality. An example of this would be the view only containing functions related to rendering the graphical user interface and handling events. Functions such as draw\_tile() and populate\_buttons() are logically related and belong in the same class. It is evident from the object model that each module in the software system contains function specific to that module. The increase in modularity strongly reinforces a good separation of concerns as each core module does not depend on the existence and state of other modules. An increase in modularity is desirable as it allows modules to be replaced or implementations to be changed without cascading changes being required throughout the software system.
 
+\subsection{Summary of Design, Diagrams}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{ClassDiagram}
+	\caption{UML diagram for the Python implementation of Ladder-gram}
+\end{figure}
+\par 
+
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.7]{SequenceDiagram}
+	\caption{UML diagram for the Python implementation of Ladder-gram}
+\end{figure}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.5]{ActivityDiagram}
+	\caption{UML diagram for the Python implementation of Ladder-gram}
+\end{figure}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.6]{CollaborationDiagram}
+	\caption{UML diagram for the Python implementation of Ladder-gram}
+\end{figure}
+
+
 \subsection{Discussion of Sophistication Regarding Persistent Data Management, Access Control and User Interface}
 \subsubsection{Persistent Data Management}
 In the Minesweeper software system there is no persistent data stored in between games at this point in the game's development. Depending on your timeline there may be a need for a persistent data service in order to store user high scores. High scores are not a critical functional requirement and of the implementation of this data store is dependent on the workflow and time management of the developer.
@@ -146,8 +171,9 @@ The user interface for the software system of Minesweeper is quite sophisticated
 \subsection{Software Testing | Testing Plan | Feasibility}
 \par 
 
-\subsection{Version Control}
 
+\subsection{Version Control}
+\par 
 
 
 	
@@ -195,3 +221,4 @@ The user interface for the software system of Minesweeper is quite sophisticated
 	
 	
 \end{document}
+

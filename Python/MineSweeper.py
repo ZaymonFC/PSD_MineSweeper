@@ -23,9 +23,9 @@ class Minesweeper:
         # ─── DECLARE GAME SETTINGS ───────────────────────────────────────
         #
         self.game_settings = {}
-        self.game_settings['game_size'] = 10
+        self.game_settings['game_size'] = 15
         self.game_settings['window_dimension'] = 720
-        self.game_settings['game_difficulty'] = 0.01
+        self.game_settings['game_difficulty'] = 0.10
         self.game_settings['tile_dimension'] = 46
 
         #
