@@ -103,7 +103,7 @@ class View:
         self.canvas.pack(side="top")
         self.populate_buttons(self.game_size, self.game_size)
         self.menubar = MenuBar(self.frame, self)
-        self.menubar.pack(side="bottom")
+        self.menubar.pack(side="bottom", pady=(40,0))
 
 
     #

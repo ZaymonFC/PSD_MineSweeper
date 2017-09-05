@@ -84,7 +84,7 @@ class MainMenu:
         self.small_button = Button(
                                 self.frame,
                                 image=self.small_btn_img,
-                                command=lambda key="game_size", value=6: self.save_setting(key, value),
+                                command=lambda key="game_size", value=8: self.save_setting(key, value),
                                 width=149,
                                 height=47,
                                 bg=self.config['bg_colour'],
@@ -93,7 +93,7 @@ class MainMenu:
                             )
         self.medium_button = Button(self.frame,
                                 image=self.medium_btn_img,
-                                command=lambda key="game_size", value=10: self.save_setting(key, value),
+                                command=lambda key="game_size", value=12: self.save_setting(key, value),
                                 width=149,
                                 height=47,
                                 bg=self.config['bg_colour'],
@@ -102,7 +102,7 @@ class MainMenu:
                             )
         self.large_button = Button(self.frame,
                                 image=self.large_btn_img,
-                                command=lambda key="game_size", value=15: self.save_setting(key, value),
+                                command=lambda key="game_size", value=16: self.save_setting(key, value),
                                 width=149,
                                 height=47,
                                 bg=self.config['bg_colour'],
