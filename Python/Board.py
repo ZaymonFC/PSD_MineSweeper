@@ -115,7 +115,7 @@ class Board:
                 grow_list.append([n_i,n_j])
                 # Set to English 'zero' to prevent endless recursion
                 self.button_numbers[n_i][n_j] = 'zero'
-            elif self.button_numbers[n_i][n_j] == 1:
+            elif self.button_numbers[n_i][n_j] == 1 or 2:
                 # Toggle the 'button'
                 self.toggles[n_i][n_j] = True
         if grow_list:
