@@ -53,26 +53,8 @@ class MainMenu:
         #
         # ─── CREATE SELECT MODE COMPONENTS ───────────────────────────────
         #
-        self.square_button = Button(
-                                self.frame,
-                                image=self.square_btn_img,
-                                command=lambda key="game_mode", value="square": self.save_setting(key, value),
-                                width=149,
-                                height=47,
-                                bg=self.config['bg_colour'],
-                                relief=FLAT,
-                                borderwidth=0
-                            )
-
-        self.hex_button = Button(self.frame,
-                                image=self.hex_btn_img,
-                                command=lambda key="game_mode", value="hex": self.save_setting(key, value),
-                                width=149,
-                                height=47,
-                                bg=self.config['bg_colour'],
-                                relief=FLAT,
-                                borderwidth=0
-                            )
+        self.square_button = self.create_button(self.square_btn_img, "game_mode", "square")
+        self.hex_button = self.create_button(self.hex_btn_img, "game_mode", "hex")
         
         #
         # ─── CREATE SELECT SIZE COMPONENTS ───────────────────────────────
@@ -81,34 +63,9 @@ class MainMenu:
                                 image=self.select_size_img,
                                 bg=self.config['bg_colour']
                                 )
-        self.small_button = Button(
-                                self.frame,
-                                image=self.small_btn_img,
-                                command=lambda key="game_size", value=8: self.save_setting(key, value),
-                                width=149,
-                                height=47,
-                                bg=self.config['bg_colour'],
-                                relief=FLAT,
-                                borderwidth=0
-                            )
-        self.medium_button = Button(self.frame,
-                                image=self.medium_btn_img,
-                                command=lambda key="game_size", value=12: self.save_setting(key, value),
-                                width=149,
-                                height=47,
-                                bg=self.config['bg_colour'],
-                                relief=FLAT,
-                                borderwidth=0
-                            )
-        self.large_button = Button(self.frame,
-                                image=self.large_btn_img,
-                                command=lambda key="game_size", value=16: self.save_setting(key, value),
-                                width=149,
-                                height=47,
-                                bg=self.config['bg_colour'],
-                                relief=FLAT,
-                                borderwidth=0
-                            )
+        self.small_button = self.create_button(self.small_btn_img, "game_size", 8)
+        self.medium_button = self.create_button(self.medium_btn_img, "game_size", 12)
+        self.large_button = self.create_button(self.large_btn_img, "game_size", 16)
         #
         # ─── CREATE SELECT DIFFICULTY COMPONENTS ─────────────────────────
         #
@@ -116,34 +73,10 @@ class MainMenu:
                                 image=self.select_difficulty_img,
                                 bg=self.config['bg_colour']
                                 )
-        self.normal_button = Button(
-                                self.frame,
-                                image=self.normal_btn_img,
-                                command=lambda key="game_difficulty", value=0.1: self.save_setting(key, value),
-                                width=149,
-                                height=47,
-                                bg=self.config['bg_colour'],
-                                relief=FLAT,
-                                borderwidth=0
-                            )
-        self.hard_button = Button(self.frame,
-                                image=self.hard_btn_img,
-                                command=lambda key="game_difficulty", value=0.2: self.save_setting(key, value),
-                                width=149,
-                                height=47,
-                                bg=self.config['bg_colour'],
-                                relief=FLAT,
-                                borderwidth=0
-                            )
-        self.extreme_button = Button(self.frame,
-                                image=self.extreme_btn_img,
-                                command=lambda key="game_difficulty", value=0.3: self.save_setting(key, value),
-                                width=149,
-                                height=47,
-                                bg=self.config['bg_colour'],
-                                relief=FLAT,
-                                borderwidth=0
-                            )
+
+        self.normal_button  = self.create_button(self.normal_btn_img, "game_difficulty", 0.1)
+        self.hard_button    = self.create_button(self.hard_btn_img, "game_difficulty", 0.2)
+        self.extreme_button = self.create_button(self.extreme_btn_img, "game_difficulty", 0.3)
             
         #
         # ─── PACK AND PLACE COMPONENTS ───────────────────────────────────
@@ -154,6 +87,22 @@ class MainMenu:
         self.square_button.place(bordermode=OUTSIDE, x=280, y=300)
         self.hex_button.place(bordermode=OUTSIDE, x=280, y=400)
         self.title_label.place(bordermode=OUTSIDE, x=60, y=80)
+
+
+    #
+    # ─── FUNCTION TO CREATE A BUTTON OBJECT ─────────────────────────────────────────
+    #
+    def create_button(self, display_image, spec_key, spec_value):
+        return Button(
+                self.frame,
+                image=display_image,
+                command=lambda key=spec_key, value=spec_value: self.save_setting(key, value),
+                width=149,
+                height=47,
+                bg=self.config['bg_colour'],
+                relief=FLAT,
+                borderwidth=0
+             )
 
 
     #
