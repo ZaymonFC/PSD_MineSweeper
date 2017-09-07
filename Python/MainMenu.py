@@ -26,17 +26,17 @@ class MainMenu:
         self.hex_btn_img    = PhotoImage(file="assets/hexBtn.png")
 
         # Choose Size Btn
-        self.small_btn_img = PhotoImage(file="assets/small_btn.png")
+        self.small_btn_img  = PhotoImage(file="assets/small_btn.png")
         self.medium_btn_img = PhotoImage(file="assets/medium_btn.png")
-        self.large_btn_img = PhotoImage(file="assets/large_btn.png")
+        self.large_btn_img  = PhotoImage(file="assets/large_btn.png")
 
         self.normal_btn_img  = PhotoImage(file="assets/normal_btn.png")
         self.hard_btn_img    = PhotoImage(file="assets/hard_btn.png")
         self.extreme_btn_img = PhotoImage(file="assets/extreme_btn.png")
         
         # Labels
-        self.title_img       = PhotoImage(file="assets/title.png")
-        self.select_size_img = PhotoImage(file="assets/select_size.png")
+        self.title_img             = PhotoImage(file="assets/title.png")
+        self.select_size_img       = PhotoImage(file="assets/select_size.png")
         self.select_difficulty_img = PhotoImage(file="assets/select_difficulty.png")
 
         #highscore_btn_img = PhotoImage(file="assets/highscoreBtn.png")
@@ -63,9 +63,9 @@ class MainMenu:
                                 image=self.select_size_img,
                                 bg=self.config['bg_colour']
                                 )
-        self.small_button = self.create_button(self.small_btn_img, "game_size", 8)
+        self.small_button  = self.create_button(self.small_btn_img, "game_size", 8)
         self.medium_button = self.create_button(self.medium_btn_img, "game_size", 12)
-        self.large_button = self.create_button(self.large_btn_img, "game_size", 16)
+        self.large_button  = self.create_button(self.large_btn_img, "game_size", 16)
         #
         # ─── CREATE SELECT DIFFICULTY COMPONENTS ─────────────────────────
         #

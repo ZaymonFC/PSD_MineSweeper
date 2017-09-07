@@ -137,6 +137,8 @@ class Board:
             self.game_over = True
 
     def cover_button(self, i, j):
+        if self.toggles[i][j]:
+            return
         if self.covers[i][j]:
             self.covers[i][j] = False
         else:

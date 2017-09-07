@@ -121,6 +121,7 @@ class View:
         covers  = self.board.get_state_covers()
 
         # ─── REDRAW THE GAME BOARD ───────────────────────────────────────
+        self.canvas.delete(ALL)
         for i in range(self.game_size):
             for j in range(self.game_size):
                 if covers[i][j] == True:
@@ -131,14 +132,13 @@ class View:
                     self.draw_tile(i, j, self.square_down)
                 else:
                     self.draw_tile(i, j, self.square_down, numbers[i][j])
-                
     #
     # ─── DRAW A SINGLE TILE ─────────────────────────────────────────────────────────
     def draw_tile(self, i, j, image, text=0):
         img_dimension = 46
         pos_x = img_dimension * i
         pos_y = img_dimension * j
-        self.canvas.create_image(pos_x, pos_y, anchor=NW, image=image);
+        self.canvas.create_image(pos_x, pos_y, anchor=NW, image=image, tags="tile");
 
         if text != 0:
             if self.board.get_state_button_numbers()[i][j] is 'zero':
