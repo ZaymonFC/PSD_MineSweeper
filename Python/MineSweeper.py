@@ -45,7 +45,7 @@ class Minesweeper:
             # ─── CREATE THE GAME BOARD ───────────────────────────────────────
             #
             self.game_board = Board(
-                self.game_settings["game_mode"],
+                self.game_settings['game_mode'],
                 self.game_settings['game_difficulty'],
                 self.game_settings['game_size']
             );

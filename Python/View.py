@@ -8,6 +8,7 @@
 # ─── IMPORTS ────────────────────────────────────────────────────────────────────
 from tkinter import *
 from MenuBar import MenuBar
+from PositionService import PositionService
 
 class View:
     #
@@ -23,11 +24,8 @@ class View:
         
         #
         # ─── MUTATE THE BOARD THROUGH THE CONTROLLER ─────────────────────
-        print("clicked at", event.x, event.y)
-        button_i = event.y // 46
-        button_j = event.x // 46
-        # print("clicked button: ", button_i, button_j)
-        self.controller.activate(button_i, button_j)
+        coordinates = self.position_service.calculate_coordinates(event.x, event.y)
+        self.controller.activate(coordinates[0], coordinates[1])
 
         #
         # ─── BEFORE REDRAW CHECK IF THE GAME IS OVER ─────────────────────
@@ -44,11 +42,8 @@ class View:
             return NONE
         #
         # ─── MUTATE THE BOARD THROUGH THE CONTROLLER ─────────────────────
-        print("clicked at", event.x, event.y)
-        button_i = event.y // 46
-        button_j = event.x // 46
-        # print("clicked button: ", button_i, button_j)
-        self.controller.cover(button_i, button_j)
+        coordinates = self.position_service.calculate_coordinates(event.x, event.y)
+        self.controller.cover(coordinates[0], coordinates[1])
         
         self.render_handler()
 
@@ -76,17 +71,18 @@ class View:
         self.height = settings['window_dimension']
         self.width = settings['window_dimension']
         self.game_size = settings['game_size']
-        self.tile_dimesion = settings['tile_dimension']
+        self.tile_dimension = settings['tile_dimension']
         self.mode = settings['game_mode']
+        self.position_service = PositionService(self.mode, self.tile_dimension)
 
         #
         # ─── CALCULATE CANVAS DIMENSIONS ─────────────────────────────────
-        canvas_dimension = self.tile_dimesion * self.game_size
+        canvas_dimension = self.tile_dimension * self.game_size
         canvas_width = canvas_dimension
         canvas_height = canvas_dimension
         if self.mode == "HEX":
-            canvas_height = canvas_dimension * 0.75 + self.tile_dimesion / 2
-            canvas_width += self.tile_dimesion / 2
+            canvas_height = canvas_dimension * 0.75 + self.tile_dimension / 2
+            canvas_width += self.tile_dimension / 2
             
         #
         # ─── DEFINE THE FRAME ────────────────────────────────────────────
