@@ -162,9 +162,9 @@ class View:
                 if covers[i][j] == True:
                     self.place_tile_hex(j, i, self.hex_cover)
                 elif not toggles[i][j]:
-                    self.place_tile_hex(j, i, self.hex_up, numbers[i][j])
+                    self.place_tile_hex(j, i, self.hex_up)
                 elif numbers[i][j] == 0:
-                    self.place_tile_hex(j, i, self.hex_down, numbers[i][j])
+                    self.place_tile_hex(j, i, self.hex_down)
                 else:
                     self.place_tile_hex(j, i, self.hex_down, numbers[i][j])
     
@@ -174,25 +174,19 @@ class View:
         img_dimension = 46
         pos_x = img_dimension * i
         pos_y = img_dimension * j
-        # text = str(i) + "," + str(j)
         self.draw_tile(pos_x, pos_y, image, text)
+
     #
     # ─── DETERMINE POSITION FOR HEXAGONAL TILE ──────────────────────────────────────
     def place_tile_hex(self, i, j, image, text=0):
         img_dimension = 46
-        # base_pos_x = i * img_dimension
         base_pos_y = j * (img_dimension * 0.75)
-
-        # even rows normal
         if j % 2 == 1:
             base_pos_x = i * img_dimension + (img_dimension / 2)
         else:
             base_pos_x = i * img_dimension
-        # text = str(i) + "," + str(j)
         self.draw_tile(base_pos_x, base_pos_y, image, text)
 
-
-        # odd rows to the right
         
     def draw_tile(self, pos_x, pos_y, image, text):
         self.canvas.create_image(pos_x, pos_y, anchor=NW, image=image, tags="tile");
