@@ -10,16 +10,29 @@ class Board:
     def __init__(self, board_type, difficulty, dimension):
         self.type = board_type
         self.dimension = dimension
+        
         self.graph = self.create_graph(type, dimension, dimension)
+
+        print(self.graph[(2,2)])
         self.cell_count = dimension * dimension
         self.mine_count = difficulty * self.cell_count
         self.mines = self.add_mines(dimension, dimension, self.mine_count)
         self.button_numbers = self.calc_mines(self.graph, self.mines, dimension, dimension)
 
+        for i in range(self.dimension):
+            for j in range(self.dimension):
+                print(self.button_numbers[i][j], end="\t")
+            print()
+        
         self.toggles = [[False] * dimension for _ in range(dimension)]
         self.covers = [[False] * dimension for _ in range(dimension)]
         self.game_over = False
         self.game_win = False
+
+        # for i in range(self.dimension):
+        #     for j in range(self.dimension):
+        #         if self.button_numbers[i][j] == -1:
+        #             print(j,i, "Neighbors:", self.graph[j,i] )
 
 
 #
@@ -28,30 +41,34 @@ class Board:
     def create_graph(self, type, w, h):
         """ Function to create the graph for a board of n * n size """
         graph = {}
-        for i in range(h):
-            for j in range(w):
+        for j in range(h):
+            for i in range(w):
                 neighbors = []
                 # Top left
-                if i - 1 >= 0 and j - 1 >= 0:
-                    neighbors.append((i - 1, j - 1))
+                if i % 2 == 0 or self.type == "SQUARE":
+                    if i - 1 >= 0 and j - 1 >= 0:
+                        neighbors.append((i - 1, j - 1))
                 # Top
                 if i - 1 >= 0:
                     neighbors.append((i - 1, j))
                 # Top Right
-                if i - 1 >= 0 and j + 1 < w:
-                    neighbors.append((i - 1, j + 1))
+                if i % 2 == 1 or self.type == "SQUARE":
+                    if i - 1 >= 0 and j + 1 < w:
+                        neighbors.append((i - 1, j + 1))
                 # Right
                 if j + 1 < w:
                     neighbors.append((i, j + 1))
                 # Bottom Right
-                if i + 1 < h and j + 1 < w:
-                    neighbors.append((i + 1, j + 1))
+                if i % 2 == 1 or self.type == "SQUARE":
+                    if i + 1 < h and j + 1 < w:
+                        neighbors.append((i + 1, j + 1))
                 # Bottom
                 if i + 1 < h:
                     neighbors.append((i + 1, j))
                 # Bottom Left
-                if i + 1 < h and j - 1 >= 0:
-                    neighbors.append((i + 1, j - 1))
+                if i % 2 == 0 or self.type == "SQUARE":
+                    if i + 1 < h and j - 1 >= 0:
+                        neighbors.append((i + 1, j - 1))
                 # Left
                 if j - 1 >= 0:
                     neighbors.append((i, j - 1))
@@ -64,10 +81,10 @@ class Board:
         count = mineCount
         done = False
         while not done:
-            for i in range(h):
-                for j in range(w):
+            for j in range(h):
+                for i in range(w):
                     if mines[i][j] != 1 and rand.random() > 0.91:
-                        if count < 0:
+                        if count <= 0:
                             done = True
                             break
                         mines[i][j] = 1
@@ -75,26 +92,43 @@ class Board:
         return mines
 
 
-    def count_surrounds(self, graph, i, j, mines):
-        count = 0
-        for neighbor in graph[i,j]:
-            if mines[neighbor[0]][neighbor[1]] == 1:
-                count += 1
-        return count
+    # def count_surrounds(self, graph, i, j, mines):
+    #     count = 0
+    #     for neighbor in graph[i,j]:
+    #         if mines[neighbor[0]][neighbor[1]] == 1:
+    #             count += 1
+    #     return count
 
+
+    # def calc_mines(self, graph, mines, w, h):
+    #     button_numbers = [[0 for col in range(w)] for row in range(h)]
+    #     for i in range (h):
+    #         for j in range(w):
+    #             # add -1 if the button is over a bomb
+    #             if mines[i][j] == 1:
+    #                 button_numbers[i][j] = -1
+    #             # Else calculate the buttons value
+    #             else:
+    #                 button_numbers[i][j] = self.count_surrounds(graph, i, j, mines)
+    #     return button_numbers
+
+    def increment_surrounds(self, graph, button_numbers, i, j):
+        for neighbor in graph[i,j]:
+            if button_numbers[neighbor[0]][neighbor[1]] == -1:
+                continue
+            else:
+                button_numbers[neighbor[0]][neighbor[1]] += 1
 
     def calc_mines(self, graph, mines, w, h):
-        button_numbers = [[0 for col in range(w)] for row in range(h)]
-        for i in range (h):
-            for j in range(w):
+        button_numbers = [[0 for col in range(h)] for row in range(w)]
+        for j in range (h):
+            for i in range(w):
                 # add -1 if the button is over a bomb
                 if mines[i][j] == 1:
                     button_numbers[i][j] = -1
-                # Else calculate the buttons value
-                else:
-                    button_numbers[i][j] = self.count_surrounds(graph, i, j, mines)
+                    self.increment_surrounds(graph, button_numbers, i, j)
+                
         return button_numbers
-
     
     
 #

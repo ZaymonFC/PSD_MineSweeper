@@ -24,9 +24,9 @@ class View:
         #
         # ─── MUTATE THE BOARD THROUGH THE CONTROLLER ─────────────────────
         print("clicked at", event.x, event.y)
-        button_i = event.x // 46
-        button_j = event.y // 46
-        print("clicked button: ", button_i, button_j)
+        button_i = event.y // 46
+        button_j = event.x // 46
+        # print("clicked button: ", button_i, button_j)
         self.controller.activate(button_i, button_j)
 
         #
@@ -34,7 +34,7 @@ class View:
         if self.board.get_state_loss():
             self.draw_mines()
         else: 
-            self.draw();
+            self.render_handler();
 
 
     def callback_cover(self, event):
@@ -45,12 +45,12 @@ class View:
         #
         # ─── MUTATE THE BOARD THROUGH THE CONTROLLER ─────────────────────
         print("clicked at", event.x, event.y)
-        button_i = event.x // 46
-        button_j = event.y // 46
-        print("clicked button: ", button_i, button_j)
+        button_i = event.y // 46
+        button_j = event.x // 46
+        # print("clicked button: ", button_i, button_j)
         self.controller.cover(button_i, button_j)
         
-        self.draw()
+        self.render_handler()
 
         if self.board.get_state_win():
             print("HEY YOU WON!!")
@@ -65,9 +65,6 @@ class View:
 
 
 
-    # 
-
-
     def __init__(self, game_board, game_controller, master, settings):
         #
         # ─── ASSIGN REFERENCE VARIABLES ──────────────────────────────────
@@ -80,40 +77,60 @@ class View:
         self.width = settings['window_dimension']
         self.game_size = settings['game_size']
         self.tile_dimesion = settings['tile_dimension']
+        self.mode = settings['game_mode']
 
         #
         # ─── CALCULATE CANVAS DIMENSIONS ─────────────────────────────────
         canvas_dimension = self.tile_dimesion * self.game_size
+        canvas_width = canvas_dimension
+        canvas_height = canvas_dimension
+        if self.mode == "HEX":
+            canvas_height = canvas_dimension + self.tile_dimesion / 2
+            canvas_width += self.tile_dimesion / 2
             
         #
         # ─── DEFINE THE FRAME ────────────────────────────────────────────
         self.frame = Frame(master, background="#F19C79", borderwidth=23)
         self.frame.pack()
 
+        #
+        # ─── LOAD SQUARE TILE SET ─────────────────────────────────────────
         self.square_up    = PhotoImage(file="assets/square_up.png")
         self.square_down  = PhotoImage(file="assets/square_down.png")
         self.square_bomb  = PhotoImage(file="assets/square_bomb.png")
         self.square_cover = PhotoImage(file="assets/square_cover.png")
 
         #
+        # ─── LOAD HEXAGONAL TILE SET ─────────────────────────────────────
+        self.hex_up    = PhotoImage(file="assets/hex_up.png")
+        self.hex_down  = PhotoImage(file="assets/hex_down.png")
+        self.hex_bomb  = PhotoImage(file="assets/hex_bomb.png")
+        self.hex_cover = PhotoImage(file="assets/hex_cover.png")
+
+            
+
+        #
         # ─── CREATE COMPONENTS ───────────────────────────────────────────
-        self.canvas = Canvas(self.frame, width=canvas_dimension, height=canvas_dimension, background="#F19C79",)
+        self.canvas = Canvas(self.frame, width=canvas_width, height=canvas_height, background="#F19C79",)
         self.canvas.bind("<Button-1>", self.callback_toggle)
         self.canvas.bind("<Button-3>", self.callback_cover)
         self.canvas.pack(side="top")
-        self.populate_buttons(self.game_size, self.game_size)
+        self.render_handler()
         self.menubar = MenuBar(self.frame, self)
         self.menubar.pack(side="bottom", pady=(40,0))
 
 
     #
-    # ─── ADD GRID OF BUTTONS TO CANVAS BASED ON SPEC DIMENSION ──────────────────────
-    def populate_buttons(self, width, height):
-        for i in range(width):
-            for j in range(height):
-                self.draw_tile(i, j, self.square_up)
+    # ─── RENDER HANDLER BASED ON GAME TYPE ──────────────────────────────────────────
+    def render_handler(self):
+        if self.mode == "SQUARE":
+            self.draw_squares()
+        elif self.mode == "HEX":
+            self.draw_hexagons()
+            print("We printed the hexagons")
+        
 
-    def draw(self):
+    def draw_squares(self):
         #
         # ─── GET CURRENT STATE OF THE MODEL ──────────────────────────────
         toggles = self.board.get_state_toggles()
@@ -125,25 +142,65 @@ class View:
         for i in range(self.game_size):
             for j in range(self.game_size):
                 if covers[i][j] == True:
-                    self.draw_tile(i, j, self.square_cover)
+                    self.place_tile_square(j, i, self.square_cover)
                 elif not toggles[i][j]:
-                    self.draw_tile(i, j, self.square_up)
+                    self.place_tile_square(j, i, self.square_up)
                 elif numbers[i][j] == 0:
-                    self.draw_tile(i, j, self.square_down)
+                    self.place_tile_square(j, i, self.square_down)
                 else:
-                    self.draw_tile(i, j, self.square_down, numbers[i][j])
+                    self.place_tile_square(j, i, self.square_down, numbers[i][j])
+    
+    def draw_hexagons(self):
+        #
+        # ─── GET CURRENT STATE OF THE MODEL ──────────────────────────────
+        toggles = self.board.get_state_toggles()
+        numbers = self.board.get_state_button_numbers()
+        covers  = self.board.get_state_covers()
+
+        # ─── REDRAW THE GAME BOARD ───────────────────────────────────────
+        self.canvas.delete(ALL)
+        for i in range(self.game_size):
+            for j in range(self.game_size):
+                if covers[i][j] == True:
+                    self.place_tile_hex(j, i, self.hex_cover)
+                elif not toggles[i][j]:
+                    self.place_tile_hex(j, i, self.hex_up, numbers[i][j])
+                elif numbers[i][j] == 0:
+                    self.place_tile_hex(j, i, self.hex_down, numbers[i][j])
+                else:
+                    self.place_tile_hex(j, i, self.hex_down, numbers[i][j])
+    
     #
-    # ─── DRAW A SINGLE TILE ─────────────────────────────────────────────────────────
-    def draw_tile(self, i, j, image, text=0):
+    # ─── DETERMINE POSITION FOR SQUARE TILE ─────────────────────────────────────────
+    def place_tile_square(self, i, j, image, text=0):
         img_dimension = 46
         pos_x = img_dimension * i
         pos_y = img_dimension * j
-        self.canvas.create_image(pos_x, pos_y, anchor=NW, image=image, tags="tile");
+        # text = str(i) + "," + str(j)
+        self.draw_tile(pos_x, pos_y, image, text)
+    #
+    # ─── DETERMINE POSITION FOR HEXAGONAL TILE ──────────────────────────────────────
+    def place_tile_hex(self, i, j, image, text=0):
+        img_dimension = 46
+        # base_pos_x = i * img_dimension
+        base_pos_y = j * (img_dimension * 0.75)
 
+        # even rows normal
+        if j % 2 == 1:
+            base_pos_x = i * img_dimension + (img_dimension / 2)
+        else:
+            base_pos_x = i * img_dimension
+        # text = str(i) + "," + str(j)
+        self.draw_tile(base_pos_x, base_pos_y, image, text)
+
+
+        # odd rows to the right
+        
+    def draw_tile(self, pos_x, pos_y, image, text):
+        self.canvas.create_image(pos_x, pos_y, anchor=NW, image=image, tags="tile");
         if text != 0:
-            if self.board.get_state_button_numbers()[i][j] is 'zero':
-                 return
-            self.canvas.create_text(pos_x + 22.5, pos_y + 22.5, text=text)
+            if text != "zero":    
+                self.canvas.create_text(pos_x + 22.5, pos_y + 22.5, text=text)
 
 
     def draw_mines(self):
@@ -152,8 +209,11 @@ class View:
         for i in range(self.game_size):
             for j in range(self.game_size):
                 if numbers[i][j] == -1:
-                    self.draw_tile(i, j, self.square_bomb)
-
+                    if self.mode == "SQUARE":    
+                        self.place_tile_square(j, i, self.square_bomb)
+                    elif self.mode == "HEX":
+                        self.place_tile_hex(j, i, self.hex_bomb)
+                        
     #
     # ─── FUNCTION TO DESTROY ALL TKINTER COMPONENTS AND RETURN TO MENU ──────────────
     #

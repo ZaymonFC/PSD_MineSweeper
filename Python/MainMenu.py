@@ -53,8 +53,8 @@ class MainMenu:
         #
         # ─── CREATE SELECT MODE COMPONENTS ───────────────────────────────
         #
-        self.square_button = self.create_button(self.square_btn_img, "game_mode", "square")
-        self.hex_button = self.create_button(self.hex_btn_img, "game_mode", "hex")
+        self.square_button = self.create_button(self.square_btn_img, "game_mode", "SQUARE")
+        self.hex_button = self.create_button(self.hex_btn_img, "game_mode", "HEX")
         
         #
         # ─── CREATE SELECT SIZE COMPONENTS ───────────────────────────────
@@ -74,7 +74,7 @@ class MainMenu:
                                 bg=self.config['bg_colour']
                                 )
 
-        self.normal_button  = self.create_button(self.normal_btn_img, "game_difficulty", 0.1)
+        self.normal_button  = self.create_button(self.normal_btn_img, "game_difficulty", 0.05)
         self.hard_button    = self.create_button(self.hard_btn_img, "game_difficulty", 0.2)
         self.extreme_button = self.create_button(self.extreme_btn_img, "game_difficulty", 0.3)
             

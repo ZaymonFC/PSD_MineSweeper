@@ -23,7 +23,6 @@ class Minesweeper:
         # ─── DECLARE GAME SETTINGS ───────────────────────────────────────
         #
         self.game_settings = {}
-        self.game_settings['game_size'] = 25
         self.game_settings['window_dimension'] = 720
         self.game_settings['tile_dimension'] = 46
 
@@ -46,7 +45,7 @@ class Minesweeper:
             # ─── CREATE THE GAME BOARD ───────────────────────────────────────
             #
             self.game_board = Board(
-                'square',
+                self.game_settings["game_mode"],
                 self.game_settings['game_difficulty'],
                 self.game_settings['game_size']
             );
