@@ -101,7 +101,9 @@ class MainMenu:
                 height=47,
                 bg=self.config['bg_colour'],
                 relief=FLAT,
-                borderwidth=0
+                borderwidth=0,
+                highlightthickness=0,
+                bd=0
              )
 
 

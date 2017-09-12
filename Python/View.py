@@ -85,7 +85,7 @@ class View:
         canvas_width = canvas_dimension
         canvas_height = canvas_dimension
         if self.mode == "HEX":
-            canvas_height = canvas_dimension + self.tile_dimesion / 2
+            canvas_height = canvas_dimension * 0.75 + self.tile_dimesion / 2
             canvas_width += self.tile_dimesion / 2
             
         #
@@ -107,11 +107,9 @@ class View:
         self.hex_bomb  = PhotoImage(file="assets/hex_bomb.png")
         self.hex_cover = PhotoImage(file="assets/hex_cover.png")
 
-            
-
         #
         # ─── CREATE COMPONENTS ───────────────────────────────────────────
-        self.canvas = Canvas(self.frame, width=canvas_width, height=canvas_height, background="#F19C79",)
+        self.canvas = Canvas(self.frame, width=canvas_width, height=canvas_height, background="#F19C79", bd=0, highlightthickness=0)
         self.canvas.bind("<Button-1>", self.callback_toggle)
         self.canvas.bind("<Button-3>", self.callback_cover)
         self.canvas.pack(side="top")
