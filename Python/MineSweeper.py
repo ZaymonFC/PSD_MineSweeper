@@ -18,6 +18,10 @@ from MainMenu import MainMenu
 
 
 class Minesweeper:
+    def on_closing(self):
+        self.root.destroy()
+        exit()
+
     def __init__(self):
         #
         # ─── DECLARE GAME SETTINGS ───────────────────────────────────────
@@ -33,6 +37,8 @@ class Minesweeper:
         self.root = Tk()
         self.root.title("Z-Sweeper")
         self.root.resizable(False, False)
+        self.root.protocol("WM_DELETE_WINDOW", self.on_closing)
+
         while(True):
             #
             # ─── DISPLAY MAIN MENU AND POPULATE GAME SETTINGS ────────────────

@@ -6,7 +6,7 @@ class PositionService:
         self.tile_dimension = tile_dimension
         self.row_height = tile_dimension * 0.75
     
-    def calculate_coordinates(self, x, y):
+    def calculate_coordinates(self, x, y):  
         if self.mode == "SQUARE":
             return self.calculate_coordinates_square(x, y)
         elif self.mode == "HEX":
@@ -41,7 +41,7 @@ class PositionService:
         # ─── DETERMINE IF POINT IS ABOVE HEXAGONS TOP EDGES ──────────────
         if rel_y < (-gradient * rel_x + c):
             row -= 1
-            if odd_row:
+            if not odd_row:
                 column -= 1
         elif rel_y < (gradient * rel_x - c):
             row -= 1
