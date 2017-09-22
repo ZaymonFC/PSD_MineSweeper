@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="14.2">
+  <zoom_level>10</zoom_level>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>250</x>
+      <y>100</y>
+      <w>190</w>
+      <h>480</h>
+    </coordinates>
+    <panel_attributes>Board
+-
+button_numbers : list
+covers : list
+dimension
+game_over : bool
+game_win : bool
+graph : dict
+mine_count
+mines : list
+toggles : list
+type : string
+-
+add_mines()
+calc_mines()
+count_surrounds()
+cover_buttons()
+cover_match()
+create_graph()
+recursive_reveal()
+toggle_button()
+get_state_board_type()
+get_state_button_numbers()
+get_state_covers()
+get_state_loss()
+get_state_win()
+get_state_toggles()
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>600</x>
+      <y>100</y>
+      <w>230</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>Minesweeper
+-
+game_board : Board
+game_controller : GameController
+game_settings:dict
+main_menu : MainMenu
+root : TK Frame
+view : View
+-
+on_closing()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>520</x>
+      <y>480</y>
+      <w>150</w>
+      <h>100</h>
+    </coordinates>
+    <panel_attributes>GameController
+-
+board : Board
+-
+activate()
+cover()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>330</y>
+      <w>180</w>
+      <h>310</h>
+    </coordinates>
+    <panel_attributes>View
+-
+board : Board
+controller : Controller
+frame : Tkinter.Frame
+game_size
+menubar : MenuBar
+tile_dimension
+canvas : Tkinter.Canvas
+-
+callback_cover()
+callback_toggle()
+render_handler()
+draw_squares()
+draw_hexagons()
+place_tile_square()
+place_tile_hexagon()
+draw_tile()
+draw_mines()
+cleanup()
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1020</x>
+      <y>100</y>
+      <w>220</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>MainMenu
+-
+config: dict
+frame : Tkinter.Frame
+hex_button : Tkinter.Button
+square_button : Tkinter.Button
+title_label : Tkinter.Label
+-
+clean_components()
+return_settings()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1030</x>
+      <y>510</y>
+      <w>200</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>MenuBar
+-
+parent : Tkinter.Frame
+menu_button : Tkinter.Button
+quit_button : Tkinter.Button
+view : View
+-
+main_menu()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>110</y>
+      <w>190</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+&lt; creates</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>390</y>
+      <w>190</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=.
+m1=1
+m2=1
+&lt; References</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0;170.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>820</x>
+      <y>110</y>
+      <w>220</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+creates &gt;</panel_attributes>
+    <additional_attributes>200.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>760</x>
+      <y>240</y>
+      <w>130</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+creates &gt;</panel_attributes>
+    <additional_attributes>110.0;90.0;110.0;40.0;10.0;40.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>430</x>
+      <y>330</y>
+      <w>340</w>
+      <h>50</h>
+    </coordinates>
+    <panel_attributes>lt=.
+m1=1
+m2=1
+&lt; References</panel_attributes>
+    <additional_attributes>10.0;20.0;320.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>640</x>
+      <y>390</y>
+      <w>130</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=.
+m1=1
+m2=1
+&lt; References</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0;110.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>380</y>
+      <w>210</w>
+      <h>150</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+  creates &gt;</panel_attributes>
+    <additional_attributes>130.0;130.0;130.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1110</x>
+      <y>300</y>
+      <w>130</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>/Tkinter.Frame/
+-
+...
+-
+...</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>330</y>
+      <w>210</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>190.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>360</y>
+      <w>90</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1170</x>
+      <y>240</y>
+      <w>90</w>
+      <h>80</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1030</x>
+      <y>730</y>
+      <w>200</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>ScoreBoard
+-
+parent : Tkinter.Frame
+-
+tick()
+stop_timer()
+calculate_score()
+get_score()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>920</x>
+      <y>610</y>
+      <w>150</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+creates &gt;</panel_attributes>
+    <additional_attributes>130.0;120.0;130.0;80.0;40.0;80.0;40.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>750</x>
+      <y>720</y>
+      <w>210</w>
+      <h>130</h>
+    </coordinates>
+    <panel_attributes>PositionService
+-
+mode: string
+tile_dimension
+row_height
+-
+calculate_coordinates()
+calculate_coordinates_square()
+calculate_coordinates_hex()</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>830</x>
+      <y>630</y>
+      <w>90</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>lt=-
+m1=1
+m2=1
+  creates v</panel_attributes>
+    <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1160</x>
+      <y>340</y>
+      <w>180</w>
+      <h>410</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-
+&lt;&lt;extends&gt;&gt;</panel_attributes>
+    <additional_attributes>80.0;10.0;100.0;10.0;100.0;350.0;10.0;350.0;10.0;390.0</additional_attributes>
+  </element>
+</diagram>
