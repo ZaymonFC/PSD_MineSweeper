@@ -69,35 +69,67 @@
 \tableofcontents
 \pagebreak
 
+TODO: FIXME: FINISHME: CHECKME:
+
 %
 % ─── START OF REPORT ────────────────────────────────────────────────────────────
 %
 \section{Principles of Software Engineering Final Submission}
 \subsection{Design Principles}
-When creating any piece of software, various design principles must be acknowledged and taken into consideration. Principles such as least privilege, fail-safe defaults, separation of concerns, information hiding and data encapsulation, coupling and cohesion and the principle of single responsibility. When creating or writing any code segment in a project it is important to keep in mind the overarching structure along with 
-TODO:
+When creating any piece of software, various design principles must be acknowledged and taken into consideration. Principles such as least privilege, fail-safe defaults, separation of concerns, information hiding and data encapsulation, coupling and cohesion and the principle of single responsibility. When creating or writing any code segment in a project it is important to keep in mind the overarching structure along with writing good readable code at the class, function and statement level.
+TODO: / FINISHME:
 
+%
+% ─── DESIGN PROCESS ─────────────────────────────────────────────────────────────
+%
 \subsection{Design Process}
-TODO:
+Selecting and maintaining a design process is essential to the successful development of a software system. A software process is a group of interrelated methodologies which result in the creation of software systems. A software process is beneficial as a standard way to approach any project. Each step in the process builds upon the products of the last step in order to maximise productivity, functionality and success. For the development of the Minesweeper software system, an agile software and design process was chosen. This decision was made in order to accelerate the creation of early prototypes as well as quickly constructing and evaluating requirements based on the needs of the system. The Minesweeper software system was able to be refined over numerous iterations in order to meet both the demands of the requirements but also the stakeholders through the submission of milestones at key points in time throughout the development lifecycle. 
+\newline
+CHECKME:
+\par In retrospect the agile development process taken was a very good decision due to the experimental and iterative nature of the project. During each development sprint (or in this case the time between milestones) the developer was able to target specific requirements without a risk of scope creep. The agile nature of the development process also allowed the developers to re-evaluate the technologies used and make the switch from JavaScript to python3.
 
+%
+% ─── SYSTEM MODELS ──────────────────────────────────────────────────────────────
+%	
 \subsection{System Models}
+\begin{figure}[!h]
+	\centering
+	\includegraphics[scale=0.50]{class}
+	\caption{UML Class Diagram for MineSweeper}
+	\label{Class}
+\end{figure}
 TODO:
 
+%
+% ─── SOFTWARE SYSTEM DESIGN ─────────────────────────────────────────────────────
+%
+\clearpage
+\label{SystemDesign}
 \subsection{Minesweeper Software System Design}
-TODO:
+\par Any good software system will utilise design and programming best practices in combination with structural patterns to produce quality software. In the Minesweeper software system the focus for development was to increase modularity and cohesion throughout the codebase whilst working to minimize coupling. Although the minesweeper software system does not have an extensive scope the project was still large enough to merit the use of a structural pattern such as model view controller.
+\subsubsection{Use of Model View Controller}
+The initial prototype for the Minesweeper software system was did not follow the model view controller structure. The importance of implementing MVC quickly became apparent to the developer as cost of development as well as the overall extensibility of the software system worsened as the software system increased in size. In-between iteration 1 and 2, (sprint 2 - Milestone 2) development focused on restructuring the software system in order to maximise modularity and fully implement the MVC pattern. This goal was achieved and the resulting program was far more extensible. Converting to MVC design also allowed easy implementation of new features in addition to the improvements in structure.
+\newline\par
+At the completion of this software system, the resulting program follows strict best programming practices as well as structure. Examining figure \ref{Class} it is evident that the software systems follows model view controller. In this software system the view has a reference to the model and controller objects. The controller object has a reference to the model and the model only know about itself and the data within it. In this software design the GameController class acts as a façade for the models state modification methods. This interface allows for the model implementation and behaviours to be changed without effecting how the rest of the program will interact with it. The view object does not directly perform any state or data manipulation on the model only interacting with it from the controller. Likewise there is no game logic located in view.
+
+\subsubsection{Focus on Modularity and Seperation of Concerns}
+A main focus of the development of the MineSweeper software system was increasing modularity and paying close attention to the separation of concerns in between different units of code. Throughout development efforts were made to create each function and class with logically related code. For example the view class contains functions and data specific to only displaying the view and handling user events on GUI elements. Every section of code has been broken down into logically related modules and if there were large sections of logic that were secondary to the main concern of the class they were separated out into a new class. An example of this would be the creation of the PositionService which is a module of code specifically for calculating the row and column of the button clicked based on the x and y coordinates clicked on the canvas. The PositionService also handles the logic for both square and hexagonal tiles and can infer which functions to call based on the view type. It was logical to create this service as it conflicts with the main concern of the view which is a graphical representation of the model and a way for users to interact with the software system. By creating the module the concerns of the view and that of calculating grid coordinates for clicks are adequately separated. This also reinforces the concept of single responsibility as each collection of code is only responsible for one piece of functionality. 
+\newline\par
+Modularity has been deeply beneficial to this software system as it has allowed the view and model to be easily extendible in order to implement the hexagonal version of minesweeper. By completely separating the functionality and code of the model and view classes implementing the hexagonal minesweeper was much simpler compared to trying to do it back in the single script version of the software system from milestone 01. By simply adding some logic to omit certain neighbours from the graph representation of the board in the model the model was able to be generalizable to both square and hexagonal representations.
+FINISHME:
 
 \subsection{Software Architecture}
 TODO:
 
 \subsection{Design Pattern Implementations}
 \subsubsection{Model View Controller and Interface Programming}
-TODO:
+The system design section on page \pageref{SystemDesign} demonstrates the implementation of the MVC design pattern and an example of interface programming through the controller. Model view controller is the ideal way to structure small game software systems such as minesweeper as it allows for the greatest separation of concerns.
 
 \subsubsection{Facade Pattern}
-TODO:
+Another structural pattern that was implemented in the final software system was the façade pattern. As the controller is acting as an API or thin proxy for the model, hiding implement behind an interface this is an example usage of the façade pattern.
 
 \subsubsection{State Pattern}
-TODO:
+Finite state machines or simply state machines are abstract machines that can only exist in a finite number of states. The state machine must be in one one state or another but never more than one state. This is why a state machine implementing the `state' behavioural pattern was the ideal choice for creating the game's main menu. As the menu has three views; one for selecting game type, one for selecting the game size and a final view for selecting the state, there are a finite number of states that the menu can be in. There will never be a case where the main menu is in multiple states due to the logic of the component and the implementation of the state machine. The main menu has a state variable which gets incremented by the event handlers for buttons on each state. When the state is incremented the main menu destroys components from the old state and populates components from the current state.
 
 \subsection{User Interface}
 TODO:

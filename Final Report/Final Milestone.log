@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.13)  22 SEP 2017 16:04
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.13)  22 SEP 2017 20:07
 entering extended mode
 **"Final Milestone.tex"
 ("Final Milestone.tex"
@@ -468,21 +468,47 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 \tf@toc=\write3
  [1
 
-] [2]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 111.
+] <images/class.pdf, id=11, 1134.2375pt x 792.9625pt>
+File: images/class.pdf Graphic file (type pdf)
+
+<use images/class.pdf>
+Package pdftex.def Info: images/class.pdf used on input line 97.
+(pdftex.def)             Requested size: 567.11737pt x 396.48027pt.
+
+Overfull \hbox (68.45479pt too wide) in paragraph at lines 97--98
+ [][] 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[2] [3 <./images/class.pdf>]
+Underfull \hbox (badness 10000) in paragraph at lines 111--112
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 116--117
+
+ []
+
+[4
+
+] [5]
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 143.
 
  ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 111.
- [3]
-Underfull \hbox (badness 10000) in paragraph at lines 150--151
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 143.
+ [6]
+Underfull \hbox (badness 10000) in paragraph at lines 182--183
 []\OT1/cmr/m/n/12 Merge branch 'mas-ter' of
  []
 
 
-Overfull \hbox (63.44968pt too wide) in paragraph at lines 150--151
+Overfull \hbox (63.44968pt too wide) in paragraph at lines 182--183
 \OT1/cmr/m/n/12 https://github.com/ZaymonFC/PSD[]MineSweeper| 
  []
 
@@ -490,67 +516,67 @@ Overfull \hbox (63.44968pt too wide) in paragraph at lines 150--151
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 176--177
+Underfull \hbox (badness 10000) in paragraph at lines 208--209
 []\OT1/cmr/m/n/12 Merge branch 'mas-ter' of
  []
 
 
-Overfull \hbox (63.44968pt too wide) in paragraph at lines 176--177
+Overfull \hbox (63.44968pt too wide) in paragraph at lines 208--209
 \OT1/cmr/m/n/12 https://github.com/ZaymonFC/PSD[]MineSweeper| 
  []
 
 
-Underfull \hbox (badness 2134) in paragraph at lines 178--179
+Underfull \hbox (badness 2134) in paragraph at lines 210--211
 []\OT1/cmr/m/n/12 Worked on cre-at-ing the graph for
  []
 
 
-Underfull \hbox (badness 3930) in paragraph at lines 180--181
+Underfull \hbox (badness 3930) in paragraph at lines 212--213
 []\OT1/cmr/m/n/12 Added square tile spritesheet and
  []
 
 
-Underfull \hbox (badness 1048) in paragraph at lines 183--184
+Underfull \hbox (badness 1048) in paragraph at lines 215--216
 []\OT1/cmr/m/n/12 Added Main-menu state, fixed state
  []
 
 
-Underfull \hbox (badness 5787) in paragraph at lines 187--188
+Underfull \hbox (badness 5787) in paragraph at lines 219--220
 []\OT1/cmr/m/n/12 Understood work-ing with phaserjs
  []
 
 
-Underfull \hbox (badness 3815) in paragraph at lines 187--188
+Underfull \hbox (badness 3815) in paragraph at lines 219--220
 \OT1/cmr/m/n/12 sprites and im-ple-mented a 'game'
  []
 
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-[4
+[7
 
-] [5] [6] <images/Histogram.pdf, id=31, 844.95674pt x 597.432pt>
+] [8] [9] <images/Histogram.pdf, id=46, 844.95674pt x 597.432pt>
 File: images/Histogram.pdf Graphic file (type pdf)
 
 <use images/Histogram.pdf>
-Package pdftex.def Info: images/Histogram.pdf used on input line 202.
+Package pdftex.def Info: images/Histogram.pdf used on input line 234.
 (pdftex.def)             Requested size: 506.97795pt x 358.46196pt.
 
-Overfull \hbox (8.31537pt too wide) in paragraph at lines 202--203
+Overfull \hbox (8.31537pt too wide) in paragraph at lines 234--235
  [][] 
  []
 
-[7
+[10
 
  <./images/Histogram.pdf>] ("Final Milestone.aux") ) 
 Here is how much of TeX's memory you used:
- 4531 strings out of 493698
- 61050 string characters out of 3144400
- 148976 words of memory out of 3000000
- 7814 multiletter control sequences out of 15000+200000
+ 4538 strings out of 493698
+ 61163 string characters out of 3144400
+ 148994 words of memory out of 3000000
+ 7820 multiletter control sequences out of 15000+200000
  10307 words of font info for 37 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 30i,11n,32p,827b,1059s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 30i,11n,32p,1475b,1059s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.
 9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/
 type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
@@ -558,9 +584,9 @@ lic/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
 nts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
 r6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
 C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on "Final Milestone.pdf" (8 pages, 210914 bytes).
+Output written on "Final Milestone.pdf" (11 pages, 223479 bytes).
 PDF statistics:
- 65 PDF objects out of 1000 (max. 8388607)
+ 80 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
