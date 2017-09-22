@@ -7,8 +7,10 @@
 #
 # ─── IMPORTS ────────────────────────────────────────────────────────────────────
 from tkinter import *
+import tkinter.messagebox as tkMsg
 from MenuBar import MenuBar
 from PositionService import PositionService
+from ScoreBoard import ScoreBoard
 
 class View:
     #
@@ -31,8 +33,16 @@ class View:
         # ─── BEFORE REDRAW CHECK IF THE GAME IS OVER ─────────────────────
         if self.board.get_state_loss():
             self.draw_mines()
+            self.score_board.stop_timer(False)
+            tkMsg.showinfo("Game Over", "You Lost the Game!")
         else: 
             self.render_handler();
+            
+        if self.board.get_state_win():
+            self.score_board.stop_timer()
+            win_string = "Congratulations!\n You won the game with a final score of:{score}"
+            display_string = win_string.format(score=self.score_board.get_score())
+            tkMsg.showinfo("Game Win!", display_string)
 
 
     def callback_cover(self, event):
@@ -48,16 +58,10 @@ class View:
         self.render_handler()
 
         if self.board.get_state_win():
-            print("HEY YOU WON!!")
-        #    # covers = self.board.get_state_covers()
-            # for row in covers:
-            #     for covers in row:
-            #         if covers:
-            #             print("1", end='\t')
-            #         else:
-            #             print("0", end='\t')
-            #     print("\n") 
-
+            self.score_board.stop_timer()
+            win_string = "Congratulations!\n You won the game with a final score of:{score}"
+            display_string = win_string.format(score=self.score_board.get_score())
+            tkMsg.showinfo("Game Win!", display_string)
 
 
     def __init__(self, game_board, game_controller, master, settings):
@@ -73,6 +77,7 @@ class View:
         self.game_size = settings['game_size']
         self.tile_dimension = settings['tile_dimension']
         self.mode = settings['game_mode']
+        self.difficulty = settings['game_difficulty']
         self.position_service = PositionService(self.mode, self.tile_dimension)
 
         #
@@ -108,7 +113,9 @@ class View:
         self.canvas = Canvas(self.frame, width=canvas_width, height=canvas_height, background="#F19C79", bd=0, highlightthickness=0)
         self.canvas.bind("<Button-1>", self.callback_toggle)
         self.canvas.bind("<Button-3>", self.callback_cover)
-        self.canvas.pack(side="top")
+        self.score_board = ScoreBoard(self.frame, self.width, self.difficulty)
+        self.score_board.pack(side="top")
+        self.canvas.pack()
         self.render_handler()
         self.menubar = MenuBar(self.frame, self)
         self.menubar.pack(side="bottom", pady=(40,0))

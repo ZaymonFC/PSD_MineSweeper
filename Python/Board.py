@@ -13,16 +13,10 @@ class Board:
         
         self.graph = self.create_graph(type, dimension, dimension)
 
-        print(self.graph[(2,2)])
         self.cell_count = dimension * dimension
         self.mine_count = difficulty * self.cell_count
         self.mines = self.add_mines(dimension, dimension, self.mine_count)
         self.button_numbers = self.calc_mines(self.graph, self.mines, dimension, dimension)
-
-        for i in range(self.dimension):
-            for j in range(self.dimension):
-                print(self.button_numbers[i][j], end="\t")
-            print()
         
         self.toggles = [[False] * dimension for _ in range(dimension)]
         self.covers = [[False] * dimension for _ in range(dimension)]
@@ -92,32 +86,13 @@ class Board:
         return mines
 
 
-    # def count_surrounds(self, graph, i, j, mines):
-    #     count = 0
-    #     for neighbor in graph[i,j]:
-    #         if mines[neighbor[0]][neighbor[1]] == 1:
-    #             count += 1
-    #     return count
-
-
-    # def calc_mines(self, graph, mines, w, h):
-    #     button_numbers = [[0 for col in range(w)] for row in range(h)]
-    #     for i in range (h):
-    #         for j in range(w):
-    #             # add -1 if the button is over a bomb
-    #             if mines[i][j] == 1:
-    #                 button_numbers[i][j] = -1
-    #             # Else calculate the buttons value
-    #             else:
-    #                 button_numbers[i][j] = self.count_surrounds(graph, i, j, mines)
-    #     return button_numbers
-
     def increment_surrounds(self, graph, button_numbers, i, j):
         for neighbor in graph[i,j]:
             if button_numbers[neighbor[0]][neighbor[1]] == -1:
                 continue
             else:
                 button_numbers[neighbor[0]][neighbor[1]] += 1
+
 
     def calc_mines(self, graph, mines, w, h):
         button_numbers = [[0 for col in range(h)] for row in range(w)]
@@ -155,7 +130,6 @@ class Board:
         if grow_list:
             for neighbor in grow_list:
                 self.recursive_reveal(neighbor[0], neighbor[1])
-
 
     def toggle_button(self, i, j):
         if self.toggles[i][j]:
