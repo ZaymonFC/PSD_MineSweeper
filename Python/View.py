@@ -83,7 +83,7 @@ class View:
         #
         # ─── CALCULATE CANVAS DIMENSIONS ─────────────────────────────────
         canvas_dimension = self.tile_dimension * self.game_size
-        canvas_width = canvas_dimension
+        canvas_width = canvas_dimension 
         canvas_height = canvas_dimension
         if self.mode == "HEX":
             canvas_height = canvas_dimension * 0.75 + self.tile_dimension / 2

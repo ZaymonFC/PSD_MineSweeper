@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.13)  22 SEP 2017 14:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.15 (MiKTeX 2.9 64-bit) (preloaded format=pdflatex 2016.5.13)  22 SEP 2017 16:04
 entering extended mode
 **"Final Milestone.tex"
 ("Final Milestone.tex"
@@ -388,17 +388,7 @@ Package csquotes Info: ... none found.
 LaTeX Warning: Unused global option(s):
     [a4].
 
-("Final Milestone.aux"
-
-LaTeX Warning: Label `view' multiply defined.
-
-
-LaTeX Warning: Label `view' multiply defined.
-
-
-LaTeX Warning: Label `view' multiply defined.
-
-)
+("Final Milestone.aux")
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 64.
 LaTeX Font Info:    ... okay on input line 64.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 64.
@@ -474,37 +464,103 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <8> on input line 1.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 1.
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 16.
- ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
-File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 16.
 )
 \tf@toc=\write3
  [1
 
 ] [2]
-("Final Milestone.aux")
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 111.
 
-LaTeX Warning: There were multiply-defined labels.
+ ("C:\Program Files\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10.95> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 111.
+ [3]
+Underfull \hbox (badness 10000) in paragraph at lines 150--151
+[]\OT1/cmr/m/n/12 Merge branch 'mas-ter' of
+ []
 
- ) 
+
+Overfull \hbox (63.44968pt too wide) in paragraph at lines 150--151
+\OT1/cmr/m/n/12 https://github.com/ZaymonFC/PSD[]MineSweeper| 
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 176--177
+[]\OT1/cmr/m/n/12 Merge branch 'mas-ter' of
+ []
+
+
+Overfull \hbox (63.44968pt too wide) in paragraph at lines 176--177
+\OT1/cmr/m/n/12 https://github.com/ZaymonFC/PSD[]MineSweeper| 
+ []
+
+
+Underfull \hbox (badness 2134) in paragraph at lines 178--179
+[]\OT1/cmr/m/n/12 Worked on cre-at-ing the graph for
+ []
+
+
+Underfull \hbox (badness 3930) in paragraph at lines 180--181
+[]\OT1/cmr/m/n/12 Added square tile spritesheet and
+ []
+
+
+Underfull \hbox (badness 1048) in paragraph at lines 183--184
+[]\OT1/cmr/m/n/12 Added Main-menu state, fixed state
+ []
+
+
+Underfull \hbox (badness 5787) in paragraph at lines 187--188
+[]\OT1/cmr/m/n/12 Understood work-ing with phaserjs
+ []
+
+
+Underfull \hbox (badness 3815) in paragraph at lines 187--188
+\OT1/cmr/m/n/12 sprites and im-ple-mented a 'game'
+ []
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[4
+
+] [5] [6] <images/Histogram.pdf, id=31, 844.95674pt x 597.432pt>
+File: images/Histogram.pdf Graphic file (type pdf)
+
+<use images/Histogram.pdf>
+Package pdftex.def Info: images/Histogram.pdf used on input line 202.
+(pdftex.def)             Requested size: 506.97795pt x 358.46196pt.
+
+Overfull \hbox (8.31537pt too wide) in paragraph at lines 202--203
+ [][] 
+ []
+
+[7
+
+ <./images/Histogram.pdf>] ("Final Milestone.aux") ) 
 Here is how much of TeX's memory you used:
- 4262 strings out of 493698
- 58919 string characters out of 3144400
- 137063 words of memory out of 3000000
- 7549 multiletter control sequences out of 15000+200000
- 8800 words of font info for 31 fonts, out of 3000000 for 9000
+ 4531 strings out of 493698
+ 61050 string characters out of 3144400
+ 148976 words of memory out of 3000000
+ 7814 multiletter control sequences out of 15000+200000
+ 10307 words of font info for 37 fonts, out of 3000000 for 9000
  1025 hyphenation exceptions out of 8191
- 30i,6n,32p,1168b,219s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Fil
-es/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX
- 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb>
-Output written on "Final Milestone.pdf" (3 pages, 53105 bytes).
+ 30i,11n,32p,827b,1059s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.
+9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/
+type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
+r6.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><
+C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on "Final Milestone.pdf" (8 pages, 210914 bytes).
 PDF statistics:
- 28 PDF objects out of 1000 (max. 8388607)
+ 65 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

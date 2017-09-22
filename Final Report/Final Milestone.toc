@@ -1,1 +1,15 @@
 \contentsline {section}{\numberline {1}Principles of Software Engineering Final Submission}{2}
+\contentsline {subsection}{\numberline {1.1}Design Principles}{2}
+\contentsline {subsection}{\numberline {1.2}Design Process}{2}
+\contentsline {subsection}{\numberline {1.3}System Models}{2}
+\contentsline {subsection}{\numberline {1.4}Minesweeper Software System Design}{2}
+\contentsline {subsection}{\numberline {1.5}Software Architecture}{2}
+\contentsline {subsection}{\numberline {1.6}Design Pattern Implementations}{2}
+\contentsline {subsubsection}{Model View Controller and Interface Programming}{2}
+\contentsline {subsubsection}{Facade Pattern}{2}
+\contentsline {subsubsection}{State Pattern}{2}
+\contentsline {subsection}{\numberline {1.7}User Interface}{2}
+\contentsline {subsubsection}{Principles of Composition and Single Responsibility}{2}
+\contentsline {subsection}{\numberline {1.8}Version Control}{3}
+\contentsline {subsubsection}{Version Control History / Log}{4}
+\contentsline {subsubsection}{Histogram of Effort}{7}
