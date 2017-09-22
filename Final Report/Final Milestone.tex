@@ -69,7 +69,6 @@
 \tableofcontents
 \pagebreak
 
-TODO: FIXME: FINISHME: CHECKME:
 
 %
 % ─── START OF REPORT ────────────────────────────────────────────────────────────
@@ -77,7 +76,8 @@ TODO: FIXME: FINISHME: CHECKME:
 \section{Principles of Software Engineering Final Submission}
 \subsection{Design Principles}
 When creating any piece of software, various design principles must be acknowledged and taken into consideration. Principles such as least privilege, fail-safe defaults, separation of concerns, information hiding and data encapsulation, coupling and cohesion and the principle of single responsibility. When creating or writing any code segment in a project it is important to keep in mind the overarching structure along with writing good readable code at the class, function and statement level.
-TODO: / FINISHME:
+\newline\par
+By using classes and getter/mutator methods each module in the minesweeper software system participates in encapsulation as information flow between objects can only occur in the correct or approved ways. Important information is either passed by reference to objects that require it or the objects call a getter function to receive the piece of information. Discussions about increases in modularity and separation of concerns are found in later sections of this document.
 
 %
 % ─── DESIGN PROCESS ─────────────────────────────────────────────────────────────
@@ -92,13 +92,14 @@ CHECKME:
 % ─── SYSTEM MODELS ──────────────────────────────────────────────────────────────
 %	
 \subsection{System Models}
+Throughout the two milestones and the final submission various system models have been created. For milestone 2 models such as: class diagram, system sequence diagram, activity diagram and collaboration diagrams were created. As the behaviour and functionality of the software system has not changed dramatically in the latest iteration the only system model that requires updating is the class diagram as new classes and the structure of some components has changed. Figure \ref{Class} show's the new class diagram with the ScoreBoard and PositionService classes added as well as changes in methods and variables throughout the software system.
+
 \begin{figure}[!h]
 	\centering
 	\includegraphics[scale=0.50]{class}
 	\caption{UML Class Diagram for MineSweeper}
 	\label{Class}
 \end{figure}
-TODO:
 
 %
 % ─── SOFTWARE SYSTEM DESIGN ─────────────────────────────────────────────────────
@@ -108,35 +109,29 @@ TODO:
 \subsection{Minesweeper Software System Design}
 \par Any good software system will utilise design and programming best practices in combination with structural patterns to produce quality software. In the Minesweeper software system the focus for development was to increase modularity and cohesion throughout the codebase whilst working to minimize coupling. Although the minesweeper software system does not have an extensive scope the project was still large enough to merit the use of a structural pattern such as model view controller.
 \subsubsection{Use of Model View Controller}
-The initial prototype for the Minesweeper software system was did not follow the model view controller structure. The importance of implementing MVC quickly became apparent to the developer as cost of development as well as the overall extensibility of the software system worsened as the software system increased in size. In-between iteration 1 and 2, (sprint 2 - Milestone 2) development focused on restructuring the software system in order to maximise modularity and fully implement the MVC pattern. This goal was achieved and the resulting program was far more extensible. Converting to MVC design also allowed easy implementation of new features in addition to the improvements in structure.
+\par The initial prototype for the Minesweeper software system was did not follow the model view controller structure. The importance of implementing MVC quickly became apparent to the developer as cost of development as well as the overall extensibility of the software system worsened as the software system increased in size. In-between iteration 1 and 2, (sprint 2 - Milestone 2) development focused on restructuring the software system in order to maximise modularity and fully implement the MVC pattern. This goal was achieved and the resulting program was far more extensible. Converting to MVC design also allowed easy implementation of new features in addition to the improvements in structure.
 \newline\par
 At the completion of this software system, the resulting program follows strict best programming practices as well as structure. Examining figure \ref{Class} it is evident that the software systems follows model view controller. In this software system the view has a reference to the model and controller objects. The controller object has a reference to the model and the model only know about itself and the data within it. In this software design the GameController class acts as a façade for the models state modification methods. This interface allows for the model implementation and behaviours to be changed without effecting how the rest of the program will interact with it. The view object does not directly perform any state or data manipulation on the model only interacting with it from the controller. Likewise there is no game logic located in view.
 
 \subsubsection{Focus on Modularity and Seperation of Concerns}
-A main focus of the development of the MineSweeper software system was increasing modularity and paying close attention to the separation of concerns in between different units of code. Throughout development efforts were made to create each function and class with logically related code. For example the view class contains functions and data specific to only displaying the view and handling user events on GUI elements. Every section of code has been broken down into logically related modules and if there were large sections of logic that were secondary to the main concern of the class they were separated out into a new class. An example of this would be the creation of the PositionService which is a module of code specifically for calculating the row and column of the button clicked based on the x and y coordinates clicked on the canvas. The PositionService also handles the logic for both square and hexagonal tiles and can infer which functions to call based on the view type. It was logical to create this service as it conflicts with the main concern of the view which is a graphical representation of the model and a way for users to interact with the software system. By creating the module the concerns of the view and that of calculating grid coordinates for clicks are adequately separated. This also reinforces the concept of single responsibility as each collection of code is only responsible for one piece of functionality. 
+\par A main focus of the development of the MineSweeper software system was increasing modularity and cohesion by paying close attention to the separation of concerns in between different units of code. Throughout development efforts were made to create each function and class with logically related code. For example the view class contains functions and data specific to only displaying the view and handling user events on GUI elements. Every section of code has been broken down into logically related modules and if there were large sections of logic that were secondary to the main concern of the class they were separated out into a new class. An example of this would be the creation of the PositionService which is a module of code specifically for calculating the row and column of the button clicked based on the x and y coordinates clicked on the canvas. The PositionService also handles the logic for both square and hexagonal tiles and can infer which functions to call based on the view type. It was logical to create this service as it conflicts with the main concern of the view which is a graphical representation of the model and a way for users to interact with the software system. By creating the module the concerns of the view and that of calculating grid coordinates for clicks are adequately separated. This also reinforces the concept of single responsibility as each collection of code is only responsible for one piece of functionality. 
 \newline\par
 Modularity has been deeply beneficial to this software system as it has allowed the view and model to be easily extendible in order to implement the hexagonal version of minesweeper. By completely separating the functionality and code of the model and view classes implementing the hexagonal minesweeper was much simpler compared to trying to do it back in the single script version of the software system from milestone 01. By simply adding some logic to omit certain neighbours from the graph representation of the board in the model the model was able to be generalizable to both square and hexagonal representations.
-FINISHME:
-
-\subsection{Software Architecture}
-TODO:
 
 \subsection{Design Pattern Implementations}
 \subsubsection{Model View Controller and Interface Programming}
 The system design section on page \pageref{SystemDesign} demonstrates the implementation of the MVC design pattern and an example of interface programming through the controller. Model view controller is the ideal way to structure small game software systems such as minesweeper as it allows for the greatest separation of concerns.
 
 \subsubsection{Facade Pattern}
-Another structural pattern that was implemented in the final software system was the façade pattern. As the controller is acting as an API or thin proxy for the model, hiding implement behind an interface this is an example usage of the façade pattern.
+Another structural pattern that was implemented in the final software system was the façade pattern. As the controller is acting as an API or thin proxy for the model, hiding implement behind an interface this is an example usage of the façade pattern. Additionally the use of the façade pattern helps to reduce coupling in-between the model and the view as it enforces a logical separation of responsibilities.
 
 \subsubsection{State Pattern}
 Finite state machines or simply state machines are abstract machines that can only exist in a finite number of states. The state machine must be in one one state or another but never more than one state. This is why a state machine implementing the `state' behavioural pattern was the ideal choice for creating the game's main menu. As the menu has three views; one for selecting game type, one for selecting the game size and a final view for selecting the state, there are a finite number of states that the menu can be in. There will never be a case where the main menu is in multiple states due to the logic of the component and the implementation of the state machine. The main menu has a state variable which gets incremented by the event handlers for buttons on each state. When the state is incremented the main menu destroys components from the old state and populates components from the current state.
 
 \subsection{User Interface}
-TODO:
-
-\subsubsection{Principles of Composition and Single Responsibility}
-TODO:
-
+Designing and implementing the user interface was one of the most important steps of development. As games are very visual applications the aesthetics of the software system and the performance / robustness of user interaction is integral to the quality of the program. The graphical designs have not changes since task 1 and they have been completely implemented in the final version of the Minesweeper software system.
+\newline\par
+\textbf{Note:} images of the designs have not been included as the demonstration video demonstrates the user interface and design.
 
 \subsection{Version Control}
 \par The version control used in developing this software system was Git. And the source repository was hosted on the website GitHub.com. This allowed for the generation of graphs as well as logs of commits and other metrics. By using version control the project has been able to accurately track the source code as well as providing valuable versioning services used when trying to determine when a bug was introduced into the source. As the developers work across multiple devices source control has been a valuable tool in keeping multiple local copies of the repository synchronized and up-to-date across multiple computers.
@@ -169,8 +164,6 @@ git log --pretty=format:`%h;%an;%s' > ./log.csv\end{lstlisting}
 	ZaymonFC & Sat Sep 2 18:27:35 2017 +1000 &  Added encoding for epydoc \\
 	ZaymonFC & Sat Sep 2 17:00:15 2017 +1000 &  Added Report Dir \\
 	ZaymonFC & Fri Sep 1 23:17:40 2017 +1000 &  Added Covers
-	
-	
 	\end{tabular}
 	\end{table}
 	
@@ -221,11 +214,6 @@ git log --pretty=format:`%h;%an;%s' > ./log.csv\end{lstlisting}
 		\end{tabular}
 	\end{table}
 
-
-
-
-
-
 \newpage
 \clearpage
 \subsubsection{Histogram of Effort}
@@ -234,9 +222,6 @@ git log --pretty=format:`%h;%an;%s' > ./log.csv\end{lstlisting}
 	\includegraphics[scale=0.60]{Histogram}
 	\caption{Collaboration diagram for MineSweeper}
 \end{figure}
-
-\par FIXME:
-	
 	
 \end{document}
 
